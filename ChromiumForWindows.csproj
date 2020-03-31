@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <AssemblyName>update</AssemblyName>
+    <ApplicationIcon>Resources\Images\chromiumicon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+</Project>

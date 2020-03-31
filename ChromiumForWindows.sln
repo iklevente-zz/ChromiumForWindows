@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChromiumForWindows", "ChromiumForWindows.csproj", "{C1F5E987-2A6D-4B2E-91AD-048BB02EA13A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1F5E987-2A6D-4B2E-91AD-048BB02EA13A}.Debug|x64.ActiveCfg = Debug|x64
+		{C1F5E987-2A6D-4B2E-91AD-048BB02EA13A}.Debug|x64.Build.0 = Debug|x64
+		{C1F5E987-2A6D-4B2E-91AD-048BB02EA13A}.Release|x64.ActiveCfg = Release|x64
+		{C1F5E987-2A6D-4B2E-91AD-048BB02EA13A}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A569498-3FC2-41E2-933C-224B6DF60BB8}
+	EndGlobalSection
+EndGlobal
