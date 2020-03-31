@@ -11,5 +11,7 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) p
 
  - x86 support
  - Set as Default Browser support
+ - Kill Chrome process to be able to update
+
 
 *This project is licensed under the MIT License. Made by Ilyó Kovács Levente and the contributors.*
