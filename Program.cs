@@ -30,7 +30,7 @@ namespace ChromiumForWindows
         // Kills Chromium process to be able to update
         static void CloseChromium()
         {
-            Process[] processes = Process.GetProcessesByName("Discord");
+            Process[] processes = Process.GetProcessesByName("Chromium");
             foreach (var process in processes)
             {
                 process.Kill();
