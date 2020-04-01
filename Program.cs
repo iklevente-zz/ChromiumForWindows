@@ -3,6 +3,7 @@ using System.Net;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Diagnostics;
 
 namespace ChromiumForWindows
 {
@@ -20,9 +21,20 @@ namespace ChromiumForWindows
 
             Console.WriteLine("The program has started!");
 
+            CloseChromium();
             CreateChromiumDir();
             GetLatestVersion();
             StartChromium();
+        }
+
+        // Kills Chromium process to be able to update
+        static void CloseChromium()
+        {
+            Process[] processes = Process.GetProcessesByName("Discord");
+            foreach (var process in processes)
+            {
+                process.Kill();
+            }
         }
 
         static void CreateChromiumDir()
@@ -112,7 +124,7 @@ namespace ChromiumForWindows
         {
             using (WebClient webClient = new WebClient())
             {
-                webClient.DownloadFile("https://download-chromium.appspot.com/dl/Win_x64?type=snapshots", chromiumPath + "\\latestchromium.zip");
+                webClient.DownloadFile("https://github.com/Hibbiki/chromium-win64/releases/latest/download/mini_installer.sync.exe", chromiumPath + "\\latestchromium.zip");
             }
             Console.WriteLine("latestchromium.zip downloaded");
 
