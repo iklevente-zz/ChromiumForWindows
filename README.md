@@ -10,9 +10,10 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) p
 ## Plans:
 
  - x86 support
- - Set as Default Browser support
- - Kill Chrome process to be able to update
- - Change version checker to http://commondatastorage.googleapis.com/chromium-browser-snapshots/Win/LAST_CHANGE (Less updates (eg.: not 4 times a day, only 1 times a day), but will guarantee faster load times.)
+ - Set as Default Browser support ✅
+ - Kill Chrome process to be able to update ✅
+ - Change version checker to https://github.com/Hibbiki/chromium-win64/releases/latest/ (Less updates (eg.: not 4 times a day, only 1 times a day), but will guarantee faster load times.)
+ - Download chromium from: https://github.com/Hibbiki/chromium-win64/releases/latest/download/mini_installer.sync.exe ✅
 
 
 *This project is licensed under the MIT License. Made by Ilyó Kovács Levente and the contributors.*
