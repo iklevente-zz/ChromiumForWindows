@@ -3,7 +3,7 @@ This project can install the latest pure Chromium to your PC and it keeps the br
 
 Every time you run Chromium it checks for a newer version and if needed it will update it in seconds without you noticing anything,
 
-**In short: You can use the fastest, bleeding-edge, pure Chromium to satisfy your needs. Without Google's implemented spyware.**
+**In short: You can use the fastest, stable, pure Chromium to satisfy your needs.**
 
 Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) page for the latest Installer.
 
@@ -12,8 +12,13 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) p
  - x86 support
  - Set as Default Browser support ✅
  - Kill Chrome process to be able to update ✅
- - Change version checker to https://github.com/Hibbiki/chromium-win64/releases/latest/ (Less updates (eg.: not 4 times a day, only 1 times a day), but will guarantee faster load times.)
+ - Change version checker to https://github.com/Hibbiki/chromium-win64/releases/latest/
  - Download chromium from: https://github.com/Hibbiki/chromium-win64/releases/latest/download/mini_installer.sync.exe ✅
+ - This means I am planning to make this updater compatible with Hibbiki's Chromium installer. It will download the latest stable Chromium with Google API keys, widevine support and all-codecs support.
+ 
+ ## Big thanks to:
+ - woolyss https://chromium.woolyss.com/ +rep 🍺
+ - Hibbiki https://github.com/Hibbiki/chromium-win64 +rep 🍺
 
 
 *This project is licensed under the MIT License. Made by Ilyó Kovács Levente and the contributors.*
