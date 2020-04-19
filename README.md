@@ -19,6 +19,11 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) p
  ## Big thanks to:
  - woolyss https://chromium.woolyss.com/ +rep 🍺
  - Hibbiki https://github.com/Hibbiki/chromium-win64 +rep 🍺
+ 
+ ## Buy me a coffee:
+**[PayPal](paypal.me/iklevi)**
+
+**Monero address** `44zh2iQsZcc8knbgwDPhRzKHmX6fgAq8kHz84qoCYv4v6qaRjVWcUmhFfjc8dhkYQw9whdecg3wtALe8ScJr5Ck4Hut4HNe`
 
 
 *This project is licensed under the MIT License. Made by Ilyó Kovács Levente and the contributors.*
