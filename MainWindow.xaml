@@ -13,30 +13,22 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/Chromium_Material_Icon.png" SizeToContent="WidthAndHeight">
-    <Grid>
-        <ProgressBar
-        Style="{StaticResource MaterialDesignCircularProgressBar}"
-        Value="0" Margin="323,29,97,175" Foreground="#FF4285F4" IsIndeterminate="True" Width="30" Height="30" />
+        FontFamily="{DynamicResource MaterialDesignFont}" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/Chromium_Material_Icon.png" SizeToContent="WidthAndHeight">
+    <Grid Margin="0,0,0,0">
 
         <TextBlock
-        Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="88,28,144,174" Text="Updating Chromium" FontSize="24"/>
+        Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="116,70,116,136" Text="Updating Chromium" FontSize="24"/>
 
-        <StackPanel>
-            <TextBox
-            Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
-            Height="147"
-            AcceptsReturn="True"
-            TextWrapping="Wrap"
-            VerticalScrollBarVisibility="Auto"
-            materialDesign:HintAssist.Hint="Console Log" Width="398" IsEnabled="False" RenderTransformOrigin="0.5,0.5" >
-                <TextBox.RenderTransform>
-                    <TransformGroup>
-                        <RotateTransform/>
-                        <TranslateTransform Y="70.516"/>
-                    </TransformGroup>
-                </TextBox.RenderTransform>
-            </TextBox>
-        </StackPanel>
+        <ProgressBar
+        IsIndeterminate="True" Margin="18,150,18,80" RenderTransformOrigin="0.5,0.5" Background="#FFA8CCE0" BorderBrush="#FFA8CCE0" Foreground="#FF4285F4" >
+            <ProgressBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ProgressBar.RenderTransform>
+        </ProgressBar>
     </Grid>
 </Window>

@@ -19,7 +19,7 @@ namespace ChromiumForWindows
             foreach (var process in processes)
             {
                 process.Kill();
-                System.Threading.Thread.Sleep(4000);
+                System.Threading.Thread.Sleep(3500);
                 Console.WriteLine("Chromium process killed!");
             }
 
@@ -62,7 +62,7 @@ namespace ChromiumForWindows
 
             foreach (FileInfo file in chromiumDir.GetFiles())
             {
-                System.Threading.Thread.Sleep(5000); // NEEDS FIX
+                System.Threading.Thread.Sleep(5000);
                 file.Delete();
             }
             foreach (DirectoryInfo dir in chromiumDir.GetDirectories())

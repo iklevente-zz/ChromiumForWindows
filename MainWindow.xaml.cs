@@ -82,16 +82,15 @@ namespace ChromiumForWindows
             localVersion = System.IO.File.ReadAllText(chromiumPath + "\\versioninfo.txt");
             Console.WriteLine(localVersion + " is the current local version.");
 
-            /*
+            
             // Checks the version from the website
-            System.Net.WebClient versionInfo = new System.Net.WebClient();
-            byte[] raw = versionInfo.DownloadData("https://download-chromium.appspot.com/rev/Win_x64?type=snapshots"); //Latest version
+            string url = "https://github.com/Hibbiki/chromium-win64/releases/latest/";
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            var response = (HttpWebResponse)request.GetResponse();
 
-            latestVersion = System.Text.Encoding.UTF8.GetString(raw);
-            Console.WriteLine(latestVersion + " is the current latest version.");
-            */
-
-            // Checks the version from the website
+            string redirectUrl = response.ResponseUri.ToString();
+            
+            latestVersion = redirectUrl;
 
 
             if (localVersion != latestVersion)
