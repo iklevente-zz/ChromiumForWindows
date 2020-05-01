@@ -17,6 +17,7 @@ namespace ChromiumForWindows
         // Delete Chromium desktop shortcut and replace with the updater's shortcut:
         private static void DesktopShortcut()
         {
+            // Delete it
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             System.IO.File.Delete(Path.Combine(desktopPath, "Chromium.lnk"));
 
@@ -33,6 +34,7 @@ namespace ChromiumForWindows
         // Delete Chromium Start Menu shortcut and replace with the updater's shortcut:
         private static void StartMenuShortcut()
         {
+            // Delete it
             string startMenuPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Start Menu\\Programs\\";
             System.IO.File.Delete(Path.Combine(startMenuPath, "Chromium.lnk"));
 

@@ -19,7 +19,6 @@ namespace ChromiumForWindows
             foreach (var process in processes)
             {
                 process.Kill();
-                System.Threading.Thread.Sleep(3500);
                 Console.WriteLine("Chromium process killed!");
             }
 
@@ -35,15 +34,6 @@ namespace ChromiumForWindows
             Console.WriteLine("There is a new Chromium out there! Updating...");
             Console.WriteLine("Updating versioninfo.txt is done! The program will update Chromium to the latest version now!");
 
-
-            if (Directory.Exists(MainWindow.chromiumPath + "\\Application"))
-            {
-                Console.WriteLine("Deleting old Chromium...");
-                DeleteOldChromium();
-                Directory.Delete(MainWindow.chromiumPath + "\\Application");
-                Console.WriteLine("Done!");
-            }
-
             // Downloading and updating Chromium to the latest version:
             using (WebClient webClient = new WebClient())
             {
@@ -52,23 +42,9 @@ namespace ChromiumForWindows
             Console.WriteLine("Latest Chromium installer (mini_installer.sync.exe) downloaded");
 
             Console.WriteLine("Installing...");
-            System.Diagnostics.Process.Start(System.IO.Path.Combine(MainWindow.chromiumPath + "\\mini_installer.sync.exe"));
-            System.Threading.Thread.Sleep(7000);
-        }
-
-        static void DeleteOldChromium()
-        {
-            DirectoryInfo chromiumDir = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\Application\\");
-
-            foreach (FileInfo file in chromiumDir.GetFiles())
-            {
-                System.Threading.Thread.Sleep(5000);
-                file.Delete();
-            }
-            foreach (DirectoryInfo dir in chromiumDir.GetDirectories())
-            {
-                dir.Delete(true);
-            }
+            var miniinstallersync = System.Diagnostics.Process.Start(System.IO.Path.Combine(MainWindow.chromiumPath + "\\mini_installer.sync.exe"));
+            miniinstallersync.WaitForExit();
+            Console.WriteLine("Installation is done.");
         }
     }
 }

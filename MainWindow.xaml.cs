@@ -83,16 +83,15 @@ namespace ChromiumForWindows
             Console.WriteLine(localVersion + " is the current local version.");
 
             
-            // Checks the version from the website
+            // Checks the version from the website. It will use the link below, which will redirect to the latest version. string latestVersion will be equal to the redirected URL.
             string url = "https://github.com/Hibbiki/chromium-win64/releases/latest/";
             var request = (HttpWebRequest)WebRequest.Create(url);
             var response = (HttpWebResponse)request.GetResponse();
 
-            string redirectUrl = response.ResponseUri.ToString();
-            
-            latestVersion = redirectUrl;
+            latestVersion = response.ResponseUri.ToString();
 
 
+            // Here the program decides,l if it needs to be updated
             if (localVersion != latestVersion)
             {
                 StartAndWaitForUpdate();
