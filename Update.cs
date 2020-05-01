@@ -4,8 +4,6 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ChromiumForWindows
 {
