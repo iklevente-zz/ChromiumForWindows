@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net;
 using System.IO;
+using System.Diagnostics;
 
 namespace ChromiumForWindows
 {
@@ -82,19 +83,34 @@ namespace ChromiumForWindows
             localVersion = System.IO.File.ReadAllText(chromiumPath + "\\versioninfo.txt");
             Console.WriteLine(localVersion + " is the current local version.");
 
-            
+
             // Checks the version from the website. It will use the link below, which will redirect to the latest version. string latestVersion will be equal to the redirected URL.
-            string url = "https://github.com/Hibbiki/chromium-win64/releases/latest/";
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            var response = (HttpWebResponse)request.GetResponse();
+            WebRequest request = WebRequest.Create("https://github.com/Hibbiki/chromium-win64/releases/latest/");
+            try
+            {
+                using (WebResponse response = request.GetResponse())
+                {
+                    latestVersion = response.ResponseUri.ToString();
+                }
+            }
+            catch (WebException e)
+            {
+                using (WebResponse response = e.Response)
+                {
+                    latestVersion = "No response from website";
+                }
+            }
 
-            latestVersion = response.ResponseUri.ToString();
-
-
-            // Here the program decides,l if it needs to be updated
+            // Here the program decides,l if it needs to be updated (or operator is used when there is no internet connection or can't reach the latestVersion page to update)
             if (localVersion != latestVersion)
             {
                 StartAndWaitForUpdate();
+            }
+            else if (latestVersion == "No response from website")
+            {
+                StartChromium();
+                CloseUpdater();
+                return;
             }
             else
             {
@@ -119,7 +135,10 @@ namespace ChromiumForWindows
 
         public static void StartChromium()
         {
-            System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
+            //System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
+            ProcessStartInfo chromeProcess = new ProcessStartInfo(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
+            chromeProcess.WindowStyle = ProcessWindowStyle.Maximized;
+            Process.Start(chromeProcess);
         }
 
         static void CloseUpdater()
