@@ -101,7 +101,7 @@ namespace ChromiumForWindows
                 }
             }
 
-            // Here the program decides,l if it needs to be updated (or operator is used when there is no internet connection or can't reach the latestVersion page to update)
+            // Here the program decides,l if it needs to be updated
             if (localVersion != latestVersion)
             {
                 StartAndWaitForUpdate();
