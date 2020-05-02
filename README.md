@@ -1,20 +1,21 @@
 # Chromium For Windows
-This project can install the latest pure Chromium to your PC and it keeps the browser up to date.
+This project can install the latest Chromium to your PC and it keeps the browser up to date. It is based on [Hibbiki's Chromium builds](https://github.com/Hibbiki/chromium-win64).
+Widevine, synchronisation and all-codecs are enabled.
 
-Every time you run Chromium it checks for a newer version and if needed it will update it in seconds without you noticing anything,
+**Important: You will need .NET Core Runtime to run the program. Download it from [here](https://dotnet.microsoft.com/download).**
+
+Every time you run Chromium it checks for a newer version and if needed it will update it in seconds.
 
 **In short: You can use the fastest, stable, pure Chromium to satisfy your needs.**
 
 Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) page for the latest Installer.
 
-## Plans:
+## Material Design GUI:
+![Material Design GUI](https://raw.githubusercontent.com/iklevente/ChromiumForWindows/master/Images/chromiumforwindowsgui.PNG)
 
- - x86 support
- - Set as Default Browser support ✅
- - Kill Chrome process to be able to update ✅
- - Change version checker to https://github.com/Hibbiki/chromium-win64/releases/latest/
- - Download chromium from: https://github.com/Hibbiki/chromium-win64/releases/latest/download/mini_installer.sync.exe ✅
- - This means I am planning to make this updater compatible with Hibbiki's Chromium installer. It will download the latest stable Chromium with Google API keys, widevine support and all-codecs support.
+
+## Plans:
+- Keep the project working as expected, if something would go wrong.
  
  ## Big thanks to:
  - woolyss https://chromium.woolyss.com/ +rep 🍺
