@@ -135,10 +135,7 @@ namespace ChromiumForWindows
 
         public static void StartChromium()
         {
-            //System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
-            ProcessStartInfo chromeProcess = new ProcessStartInfo(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
-            chromeProcess.WindowStyle = ProcessWindowStyle.Maximized;
-            Process.Start(chromeProcess);
+            System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
         }
 
         static void CloseUpdater()
