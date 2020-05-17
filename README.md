@@ -16,6 +16,8 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) p
 
 ## Plans:
 - Keep the project working as expected, if something would go wrong.
+- Material UI Installer
+- Ability to choose from the Chromium builds (eg.: ungoogled, raw build...)
  
  ## Big thanks to:
  - woolyss https://chromium.woolyss.com/ +rep 🍺
