@@ -19,6 +19,8 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) p
 - Material UI Installer
 - Ability to choose from the Chromium builds (eg.: ungoogled, raw build...)
 - Add support for Windows flags
+- Jumplist at taskbar
+- Merge the updater appid with Chromium to get rid of duplicated icons on taskbar
  
  ## Big thanks to:
  - woolyss https://chromium.woolyss.com/ +rep 🍺
