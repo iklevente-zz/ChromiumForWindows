@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <Platforms>AnyCPU;x64;x86</Platforms>
     <ApplicationIcon>Images\chromiumicon.ico</ApplicationIcon>
-    <Version>1.5.2</Version>
+    <Version>1.5.1</Version>
     <Authors>Ilyó Kovács Levente and the contributors</Authors>
     <Company>https://github.com/iklevente</Company>
     <Product>ChromiumForWindows - A modern auto updater for Chromium</Product>
