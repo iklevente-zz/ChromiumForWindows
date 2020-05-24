@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "SunFoAza5g8hUWLD5STuDODQvelrPAOYFeNk8J0BWeb7MFm3O8BYRzFv+ffwJS8Ze0y08cRXGI8a1ksWkGB3eg==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\Visual Studio\\ChromiumForWindowsInstaller\\ChromiumForWindowsInstaller.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\klevi\\.nuget\\packages\\materialdesigncolors\\1.2.4\\materialdesigncolors.1.2.4.nupkg.sha512",
+    "C:\\Users\\klevi\\.nuget\\packages\\materialdesignthemes\\3.1.1\\materialdesignthemes.3.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}

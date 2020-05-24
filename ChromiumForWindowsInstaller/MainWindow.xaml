@@ -1,0 +1,91 @@
+﻿<Window x:Class="ChromiumForWindowsInstaller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChromiumForWindowsInstaller"
+        mc:Ignorable="d"
+        Title="ChromiumForWindows Installer" Height="530" Width="700"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" Icon="/Chromium_Material_Icon.png" ResizeMode="NoResize" SizeToContent="Manual" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBlock
+            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="License agreement" FontWeight="Bold" Margin="0,10,0,0" FontSize="20" HorizontalAlignment="Center" Width="202" Height="26" VerticalAlignment="Top"/>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Please read the following important information before continuing:" Margin="71,67,0,0" FontSize="18" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="550" Visibility="Visible"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition
+      Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <RichTextBox
+    MinWidth="280"
+    AcceptsReturn="True"
+    IsDocumentEnabled="True"
+    IsReadOnly="True"
+    VerticalScrollBarVisibility="Auto"
+    SpellCheck.IsEnabled="True"
+    materialDesign:HintAssist.Hint="Multiline text"
+    Grid.Row="1" Margin="70,108,70,108" FontSize="14" CaretBrush="#FF4687F4">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run
+          FontWeight="Normal">
+                            MIT License
+                        </Run>
+                        <LineBreak />
+                        <Run
+          FontWeight="Normal">
+                            Copyright (c) 2020 iklevente
+                        </Run>
+                        <LineBreak />
+                        <Run
+          FontWeight="Normal">
+                            Permission is hereby granted, free of charge, to any person obtaining a copy
+                            of this software and associated documentation files (the "Software"), to deal
+                            in the Software without restriction, including without limitation the rights
+                            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                            copies of the Software, and to permit persons to whom the Software is
+                            furnished to do so, subject to the following conditions:
+                        </Run>
+                        <LineBreak />
+                        <Run
+          FontWeight="Normal">
+                            The above copyright notice and this permission notice shall be included in all
+                            copies or substantial portions of the Software.
+                        </Run>
+                        <LineBreak />
+                        <Run
+          FontWeight="Normal">
+                            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+                            SOFTWARE.
+                        </Run>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <StackPanel Grid.RowSpan="2"/>
+        </Grid>
+
+        <Button x:Name="CountinueButton"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            Width="100"
+            ToolTip="Resource name: MaterialDesignRaisedButton" Margin="0,0,62,41" Content="Countinue" Background="#FF4687F4" BorderBrush="#FF4687F4" HorizontalAlignment="Right" Height="32" VerticalAlignment="Bottom" IsEnabled="False"/>
+
+        <CheckBox x:Name="AcceptPipe"
+            Style="{StaticResource MaterialDesignCheckBox}" Margin="71,0,0,43" Content="I accept the agreement" FontSize="14" Height="39" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="174" Background="#FF4687F4" BorderBrush="#FF4687F4" Click="AcceptPipe_Click"/>
+    </Grid>
+</Window>
