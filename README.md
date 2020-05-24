@@ -11,7 +11,7 @@ Every time you run Chromium it checks for a newer version and if needed it will 
 Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) page for the latest Installer.
 
 ## Material Design GUI:
-![Material Design GUI](https://raw.githubusercontent.com/iklevente/ChromiumForWindows/master/Images/chromiumforwindowsgui.PNG)
+![Material Design GUI](https://raw.githubusercontent.com/iklevente/ChromiumForWindows/blob/master/ChromiumForWindows/Images/chromiumforwindowsgui.PNG?raw=true)
 
 
 ## Plans:
