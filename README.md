@@ -1,5 +1,6 @@
 # Chromium For Windows
 This project can install the latest Chromium to your PC and it keeps the browser up to date. It is based on [Hibbiki's Chromium builds](https://github.com/Hibbiki/chromium-win64).
+
 Widevine, synchronisation and all-codecs are enabled.
 The ungoogled version is based on [Marmaduke's Chromium builds](https://github.com/macchrome/winchrome/).
 Widevine, and all-codecs+ are enabled. Sync disabled.
