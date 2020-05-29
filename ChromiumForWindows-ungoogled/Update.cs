@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace ChromiumForWindows
 {
@@ -22,10 +23,10 @@ namespace ChromiumForWindows
             }
 
             // Deletes old installer if exists:
-            if (File.Exists(MainWindow.chromiumPath + "\\mini_installer.sync.exe"))
+            if (File.Exists(MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z"))
             {
-                System.IO.File.Delete(MainWindow.chromiumPath + "\\mini_installer.sync.exe");
-                Console.WriteLine("Deleted old Chromium installer (mini_installer.sync.exe).");
+                System.IO.File.Delete(MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z");
+                Console.WriteLine("Deleted old Chromium installer (latest_ungoogled_chromium.7z).");
             }
 
             // Changing version info to the latest one:
@@ -57,10 +58,25 @@ namespace ChromiumForWindows
             }
             Console.WriteLine("Latest Chromium (latest_ungoogled_chromium.7z) downloaded");
 
-            /*Console.WriteLine("Installing...");
-            var miniinstallersync = System.Diagnostics.Process.Start(System.IO.Path.Combine(MainWindow.chromiumPath + "\\mini_installer.sync.exe"));
-            miniinstallersync.WaitForExit();
-            Console.WriteLine("Installation is done."); */
+            Console.WriteLine("Installing...");
+            string zPath = "Resources\\7-Zip x64\\7za.exe"; //add to proj and set CopyToOuputDir
+            string sourceArchive = MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z";
+            string destination = MainWindow.chromiumPath;
+            try
+            {
+                ProcessStartInfo pro = new ProcessStartInfo();
+                pro.WindowStyle = ProcessWindowStyle.Hidden;
+                pro.FileName = zPath;
+                pro.Arguments = string.Format("x \"{0}\" -y -o\"{1}\"", sourceArchive, destination);
+                Process x = Process.Start(pro);
+                x.WaitForExit();
+            }
+            catch (System.Exception)
+            {
+                //handle error
+                MessageBox.Show("There was an error while extracting the latest Chromium.");
+            }
+            Console.WriteLine("Installation is done.");
         }
     }
 }

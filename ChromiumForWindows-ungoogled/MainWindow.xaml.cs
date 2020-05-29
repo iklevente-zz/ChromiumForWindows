@@ -59,6 +59,7 @@ namespace ChromiumForWindows
             catch (Exception e)
             {
                 Console.WriteLine("The process failed: {0}", e.ToString());
+                MessageBox.Show("The process failed: {0}", e.ToString());
                 System.Windows.Application.Current.Shutdown();
             }
             finally { }
@@ -97,7 +98,8 @@ namespace ChromiumForWindows
             {
                 using (WebResponse response = e.Response)
                 {
-                    latestVersion = "No response from website";
+                    latestVersion = "No response from download server";
+                    MessageBox.Show("No response from download server");
                 }
             }
 
@@ -106,7 +108,7 @@ namespace ChromiumForWindows
             {
                 StartAndWaitForUpdate();
             }
-            else if (latestVersion == "No response from website")
+            else if (latestVersion == "No response from download server")
             {
                 StartChromium();
                 CloseUpdater();
