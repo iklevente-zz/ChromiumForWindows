@@ -36,18 +36,19 @@ namespace ChromiumForWindows
             //Get the unique GitHub release filename
             string regexpattern = @"v(.*?)-";
             Regex rg = new Regex(regexpattern);
-            string regexresult = "";
+            string finalregexresult = "";
 
             MatchCollection matched = rg.Matches(MainWindow.latestVersion);
             for (int count = 0; count < matched.Count; count++)
             {
                 Console.WriteLine(matched[count].Value);
-                regexresult = matched[count].Value.ToString();
+                string regexresult = matched[count].Value.ToString();
                 Console.WriteLine(regexresult + "is the the found modification in the downloadable file name.");
+
+                Console.WriteLine("That v and - are causing a mess, let's get rid of them");
+                finalregexresult = regexresult.Trim('v', '-');
+                Console.WriteLine("The final regexed version result is: " + finalregexresult + "Adding it to the download file function...");
             }
-            Console.WriteLine("That v and - are causing a mess, let's get rid of them");
-            string finalregexresult = regexresult.Trim('v', '-');
-            Console.WriteLine("The final regexed version result is: " + finalregexresult + "Adding it to the download file function...");
 
             // Downloading and updating Chromium to the latest version:
             using (WebClient webClient = new WebClient())
