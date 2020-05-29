@@ -2,6 +2,9 @@
 This project can install the latest Chromium to your PC and it keeps the browser up to date. It is based on [Hibbiki's Chromium builds](https://github.com/Hibbiki/chromium-win64).
 Widevine, synchronisation and all-codecs are enabled.
 
+The ungoogled version is based on [Marmaduke's Chromium builds](https://github.com/macchrome/winchrome/).
+Widevine, and all-codecs+ are enabled. Sync disabled.
+
 **Important: You will need .NET Core Runtime to run the program. Download it from [here](https://dotnet.microsoft.com/download).**
 
 Every time you run Chromium it checks for a newer version and if needed it will update it in seconds.
