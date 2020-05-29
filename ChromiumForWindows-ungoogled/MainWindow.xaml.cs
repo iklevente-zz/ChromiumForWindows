@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace ChromiumForWindows
 {
@@ -137,7 +138,23 @@ namespace ChromiumForWindows
 
         public static void StartChromium()
         {
-            System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
+            //Get the unique GitHub release filename to be able to.... OVERCOMPLICATED SHIT! THIS IS THE PART THAT I HAVE TO SOLVE SOMEHOW
+            string regexpattern = @"v(.*?)-";
+            Regex rg = new Regex(regexpattern);
+            string finalregexresult = "";
+
+            MatchCollection matched = rg.Matches(MainWindow.latestVersion);
+            for (int count = 0; count < matched.Count; count++)
+            {
+                Console.WriteLine(matched[count].Value);
+                string regexresult = matched[count].Value.ToString();
+                Console.WriteLine(regexresult + "is the the found modification in the downloadable file name.");
+
+                Console.WriteLine("That v and - are causing a mess, let's get rid of them");
+                finalregexresult = regexresult.Trim('v', '-');
+                Console.WriteLine("The final regexed version result is: " + finalregexresult);
+            }
+            string ungoogledpath = chromiumPath + "\\ungoogled-chromium-" + finalregexresult + "-1_windows";
         }
 
         static void CloseUpdater()
