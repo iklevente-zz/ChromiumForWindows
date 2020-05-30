@@ -4,13 +4,13 @@
 #define MyAppName "ChromiumForWindows"
 #define MyAppVersion "1.5.2"
 #define MyAppPublisher "iklevente"
-#define MyAppURL "https://www.github.com/iklevente/ChromiumForWindows/"
-#define MyAppExeName "ChromiumForWindows.exe"
+#define MyAppURL "https://github.com/iklevente/ChromiumForWindows"
+#define MyAppExeName "ChromiumLauncher.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{06BAAF41-8ED2-4C9E-A224-2F3F3271FEAC}
+AppId={{122F2A3C-BFDA-4EE2-B5E2-D29C8101F7D5}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -27,7 +27,7 @@ LicenseFile=C:\Users\klevi\Desktop\License.txt
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=C:\Users\klevi\Desktop
-OutputBaseFilename=ChromiumForWindows x64
+OutputBaseFilename=ChromiumForWindows_x64
 SetupIconFile=D:\Projects\Visual Studio\ChromiumForWindows\ChromiumForWindows\Images\chromiumicon.ico
 Compression=lzma
 SolidCompression=yes
@@ -37,7 +37,7 @@ WizardStyle=modern
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "D:\Projects\Visual Studio\ChromiumForWindows\ChromiumForWindows\bin\x64\Release\netcoreapp3.1\ChromiumForWindows.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Projects\Visual Studio\ChromiumForWindows\ChromiumForWindows\bin\x64\Release\netcoreapp3.1\ChromiumLauncher.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Projects\Visual Studio\ChromiumForWindows\ChromiumForWindows\bin\x64\Release\netcoreapp3.1\ChromiumForWindows.deps.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Projects\Visual Studio\ChromiumForWindows\ChromiumForWindows\bin\x64\Release\netcoreapp3.1\ChromiumForWindows.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Projects\Visual Studio\ChromiumForWindows\ChromiumForWindows\bin\x64\Release\netcoreapp3.1\ChromiumForWindows.pdb"; DestDir: "{app}"; Flags: ignoreversion
