@@ -86,6 +86,7 @@ namespace ChromiumForWindows
 
             // Checks the version from the website. It will use the link below, which will redirect to the latest version. string latestVersion will be equal to the redirected URL.
             WebRequest request = WebRequest.Create("https://github.com/Hibbiki/chromium-win64/releases/latest/");
+            request.Method = "HEAD"; // Use a HEAD request because we don't need to download the response body
             try
             {
                 using (WebResponse response = request.GetResponse())
