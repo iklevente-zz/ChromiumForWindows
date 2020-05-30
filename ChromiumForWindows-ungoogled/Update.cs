@@ -18,8 +18,11 @@ namespace ChromiumForWindows
             Process[] processes = Process.GetProcessesByName("Chrome");
             foreach (var process in processes)
             {
-                process.Kill();
-                Console.WriteLine("Chromium process killed!");
+                if (process.MainModule.FileName.StartsWith(MainWindow.chromiumPath))
+                {
+                    process.Kill();
+                    Console.WriteLine("Chromium process killed!");
+                }
             }
 
             // Deletes old installer if exists:
