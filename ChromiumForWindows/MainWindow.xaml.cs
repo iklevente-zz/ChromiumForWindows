@@ -41,20 +41,18 @@ namespace ChromiumForWindows
 
         static void CheckChromiumDir()
         {
-            string path = chromiumPath;
-
             try
             {
                 // Determine whether the directory exists.
-                if (Directory.Exists(path))
+                if (Directory.Exists(chromiumPath))
                 {
                     Console.WriteLine("Chromium directory exists.");
                     return;
                 }
 
                 // Try to create the directory.
-                DirectoryInfo di = Directory.CreateDirectory(path);
-                Console.WriteLine("Chromium directory was created successfully at {0}.", Directory.GetCreationTime(path));
+                DirectoryInfo di = Directory.CreateDirectory(chromiumPath);
+                Console.WriteLine("Chromium directory was created successfully at {0}.", Directory.GetCreationTime(chromiumPath));
             }
             catch (Exception e)
             {

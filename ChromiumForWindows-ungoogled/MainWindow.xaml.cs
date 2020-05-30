@@ -42,20 +42,18 @@ namespace ChromiumForWindows
 
         static void CheckChromiumDir()
         {
-            string path = chromiumPath;
-
             try
             {
                 // Determine whether the directory exists.
-                if (Directory.Exists(path))
+                if (Directory.Exists(chromiumPath))
                 {
                     Console.WriteLine("Chromium directory exists.");
                     return;
                 }
 
                 // Try to create the directory.
-                DirectoryInfo di = Directory.CreateDirectory(path);
-                Console.WriteLine("Chromium directory was created successfully at {0}.", Directory.GetCreationTime(path));
+                DirectoryInfo di = Directory.CreateDirectory(chromiumPath);
+                Console.WriteLine("Chromium directory was created successfully at {0}.", Directory.GetCreationTime(chromiumPath));
             }
             catch (Exception e)
             {
@@ -139,7 +137,7 @@ namespace ChromiumForWindows
 
         public static void StartChromium()
         {
-            //Get the unique GitHub release filename to be able to.... OVERCOMPLICATED SHIT! THIS IS THE PART THAT I HAVE TO SOLVE SOMEHOW
+            //Get the unique GitHub release filename to be able to.... OVERCOMPLICATED... THIS IS THE PART THAT I HAVE TO SOLVE SOMEHOW
             string regexpattern = @"v(.*?)-";
             Regex rg = new Regex(regexpattern);
             string finalregexresult = "";
