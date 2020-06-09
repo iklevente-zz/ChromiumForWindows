@@ -32,6 +32,13 @@ namespace ChromiumForWindows
                 Console.WriteLine("Deleted old Chromium installer (latest_ungoogled_chromium.7z).");
             }
 
+            // Deletes old Chromium directory if exists: (To not leave multiple Chromium installations) // NEEDS FIX
+            if (Directory.Exists(MainWindow.chromiumPath + @"\\*ungoogled-chromium*"))
+            {
+                System.IO.Directory.Delete(MainWindow.chromiumPath + @"\\*ungoogled-chromium*");
+                Console.WriteLine("Deleted old Chromium folder.");
+            }
+
             // Changing version info to the latest one:
             System.IO.File.WriteAllText(MainWindow.chromiumPath + "\\versioninfo.txt", MainWindow.latestVersion);
             Console.WriteLine("There is a new Chromium out there! Updating...");
@@ -47,7 +54,7 @@ namespace ChromiumForWindows
             {
                 Console.WriteLine(matched[count].Value);
                 string regexresult = matched[count].Value.ToString();
-                Console.WriteLine(regexresult + "is the the found modification in the downloadable file name.");
+                Console.WriteLine(regexresult + "is the the found modification in the downloadable, released GitHub file name.");
 
                 Console.WriteLine("That v and - are causing a mess, let's get rid of them");
                 finalregexresult = regexresult.Trim('v', '-');
@@ -61,6 +68,7 @@ namespace ChromiumForWindows
             }
             Console.WriteLine("Latest Chromium (latest_ungoogled_chromium.7z) downloaded");
 
+            // Extract new ungoogled Chromium
             Console.WriteLine("Installing...");
             string zPath = "Resources\\7-Zip x64\\7za.exe"; //add to proj and set CopyToOuputDir
             string sourceArchive = MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z";
