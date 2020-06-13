@@ -11,7 +11,7 @@ Every time you run Chromium it checks for a newer version and if needed it will 
 
 **In short: You can use the fastest, stable, pure Chromium to satisfy your needs.**
 
-Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) page for the latest Installer.
+Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases/latest) page for the latest Installer.
 
 ## Material Design GUI:
 ![Material Design GUI](https://raw.githubusercontent.com/iklevente/ChromiumForWindows/master/ChromiumForWindows/Images/chromiumforwindowsgui.PNG)
