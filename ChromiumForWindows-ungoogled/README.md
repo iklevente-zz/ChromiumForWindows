@@ -32,7 +32,9 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases) p
  ## Buy me a coffee ☕:
 **[PayPal](https://www.paypal.me/iklevi)**
 
-**Monero address** `44zh2iQsZcc8knbgwDPhRzKHmX6fgAq8kHz84qoCYv4v6qaRjVWcUmhFfjc8dhkYQw9whdecg3wtALe8ScJr5Ck4Hut4HNe`
+**Bitcoin wallet:** `bc1qa4a6w0mzp43423t2ctxx958uff4yhkazxag7ya`
+
+**Monero address:** `44zh2iQsZcc8knbgwDPhRzKHmX6fgAq8kHz84qoCYv4v6qaRjVWcUmhFfjc8dhkYQw9whdecg3wtALe8ScJr5Ck4Hut4HNe`
 
 
 *This project is licensed under the MIT License. Made by Ilyó Kovács Levente and the contributors.*
