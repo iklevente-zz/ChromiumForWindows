@@ -17,17 +17,13 @@ namespace ChromiumForWindows
         // Delete Chromium desktop shortcut and replace with the updater's shortcut:
         private static void DesktopShortcut()
         {
-            // Delete it
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            System.IO.File.Delete(Path.Combine(desktopPath, "Chromium.lnk"));
-
             // Make new shortcut: 
             object shDesktop = (object)"Desktop";
             WshShell shell = new WshShell();
             string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + @"\Chromium.lnk";
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
             shortcut.Description = "Open Chromium";
-            shortcut.TargetPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows\\chrome.exe";
+            shortcut.TargetPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ChromiumLauncher.exe";
             shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows\\chrome.exe";
             shortcut.Save();
         }
