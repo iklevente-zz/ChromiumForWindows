@@ -65,8 +65,8 @@ namespace ChromiumForWindows
         }
 
         // Checks current version with the newest version: 
-        public static string localVersion = "";
-        public static string latestVersion = "";
+        public static string localVersion = null;
+        public static string latestVersion = null;
         void CheckVersion()
         {
             if (System.IO.File.Exists(chromiumPath + "\\versioninfo.txt"))
@@ -84,7 +84,7 @@ namespace ChromiumForWindows
             Console.WriteLine(localVersion + " is the current local version.");
 
 
-            // Checks the version from the website. It will use the link below, which will redirect to the latest version. string latestVersion will be equal to the redirected URL.
+            // Checks the version from the GitHub Release website. It will use the link below, which will redirect to the latest version. string latestVersion will be equal to the redirected URL.
             WebRequest request = WebRequest.Create("https://github.com/macchrome/winchrome/releases/latest/");
             request.Method = "HEAD"; // Use a HEAD request because we don't need to download the response body
             try
@@ -103,7 +103,7 @@ namespace ChromiumForWindows
                 }
             }
 
-            // Here the program decides,l if it needs to be updated
+            // Here the program decides, if it needs to be updated
             if (localVersion != latestVersion)
             {
                 StartAndWaitForUpdate();
@@ -114,7 +114,7 @@ namespace ChromiumForWindows
                 CloseUpdater();
                 return;
             }
-            else
+            else if (localVersion == latestVersion)
             {
                 Console.WriteLine("Local version is the same as latest version!");
                 Console.WriteLine("Exiting!");
@@ -137,24 +137,10 @@ namespace ChromiumForWindows
 
         public static void StartChromium()
         {
-            //Get the unique GitHub release filename to be able to get te path for chrome.exe
-            string regexpattern = @"v(.*?)-";
-            Regex rg = new Regex(regexpattern);
-            string finalregexresult = "";
+            //Get the unique GitHub release folder name to be able to get te path for chrome.exe
+            GetFileVersion.GetVersionInfo();
 
-            MatchCollection matched = rg.Matches(MainWindow.latestVersion);
-            for (int count = 0; count < matched.Count; count++)
-            {
-                Console.WriteLine(matched[count].Value);
-                string regexresult = matched[count].Value.ToString();
-                Console.WriteLine(regexresult + "is the the found modification in the downloadable, released GitHub file name.");
-
-                Console.WriteLine("That v and - are causing a mess, let's get rid of them");
-                finalregexresult = regexresult.Trim('v', '-');
-                Console.WriteLine("The final regexed version result is: " + finalregexresult);
-            }
-            string ungoogledPath = chromiumPath + "\\ungoogled-chromium-" + finalregexresult + "-1_windows";
-
+            string ungoogledPath = chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows";
             System.Diagnostics.Process.Start(System.IO.Path.Combine(ungoogledPath + "\\chrome.exe"));
         }
 

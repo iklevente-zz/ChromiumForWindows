@@ -32,39 +32,26 @@ namespace ChromiumForWindows
                 Console.WriteLine("Deleted old Chromium installer (latest_ungoogled_chromium.7z).");
             }
 
-            // Deletes old Chromium directory if exists: (To not leave multiple Chromium installations) // NEEDS FIX
-            if (Directory.Exists(MainWindow.chromiumPath + @"\\*ungoogled-chromium*"))
+            // Deletes old Chromium directory if exists: (To not leave multiple Chromium installations) // Would be cool to make it easier
+            GetFileVersion.GetOldVersionInfo();
+            if (Directory.Exists(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows"))
             {
-                System.IO.Directory.Delete(MainWindow.chromiumPath + @"\\*ungoogled-chromium*");
+                System.IO.Directory.Delete(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows");
                 Console.WriteLine("Deleted old Chromium folder.");
             }
+
+            //Get the unique GitHub release filename
+            GetFileVersion.GetVersionInfo();
 
             // Changing version info to the latest one:
             System.IO.File.WriteAllText(MainWindow.chromiumPath + "\\versioninfo.txt", MainWindow.latestVersion);
             Console.WriteLine("There is a new Chromium out there! Updating...");
             Console.WriteLine("Updating versioninfo.txt is done! The program will update Chromium to the latest version now!");
 
-            //Get the unique GitHub release filename
-            string regexpattern = @"v(.*?)-";
-            Regex rg = new Regex(regexpattern);
-            string finalregexresult = "";
-
-            MatchCollection matched = rg.Matches(MainWindow.latestVersion);
-            for (int count = 0; count < matched.Count; count++)
-            {
-                Console.WriteLine(matched[count].Value);
-                string regexresult = matched[count].Value.ToString();
-                Console.WriteLine(regexresult + "is the the found modification in the downloadable, released GitHub file name.");
-
-                Console.WriteLine("That v and - are causing a mess, let's get rid of them");
-                finalregexresult = regexresult.Trim('v', '-');
-                Console.WriteLine("The final regexed version result is: " + finalregexresult + "Adding it to the download file function...");
-            }
-
             // Downloading and updating Chromium to the latest version:
             using (WebClient webClient = new WebClient())
             {
-                webClient.DownloadFile("https://github.com/macchrome/winchrome/releases/latest/download/ungoogled-chromium-" + finalregexresult + "-1_windows.7z", MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z");
+                webClient.DownloadFile("https://github.com/macchrome/winchrome/releases/latest/download/ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows.7z", MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z");
             }
             Console.WriteLine("Latest Chromium (latest_ungoogled_chromium.7z) downloaded");
 

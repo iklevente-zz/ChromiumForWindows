@@ -1,6 +1,6 @@
 # Chromium For Windows
 
-**Remineder: The ungoogled version is only ~95% done. It will be ready in a few days and it will work as expected.**
+**Remineder: The ungoogled version is only ~98% done. It will be ready in a few days and it will work as expected.**
 
 This project can install the latest Chromium to your PC and it keeps the browser up to date. It is based on [Marmaduke's Chromium builds](https://github.com/macchrome/winchrome/).
 Widevine, and all-codecs+ are enabled. Sync disabled.
