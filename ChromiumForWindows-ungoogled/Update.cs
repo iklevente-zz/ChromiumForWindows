@@ -36,7 +36,7 @@ namespace ChromiumForWindows
             GetFileVersion.GetOldVersionInfo();
             if (Directory.Exists(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows"))
             {
-                System.IO.Directory.Delete(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows");
+                System.IO.Directory.Delete(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows", true);
                 Console.WriteLine("Deleted old Chromium folder.");
             }
 

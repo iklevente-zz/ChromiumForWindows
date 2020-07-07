@@ -31,7 +31,7 @@ namespace ChromiumForWindows
                 }
             }
 
-            //This is for letting the program know where is the Chrome.exe file to run it
+            //This is for letting the program know where is the Chrome.exe file to run it. This code will let Chromium to run even if there is no internet and it can't update.
             else if (MainWindow.latestVersion == MainWindow.localVersion || MainWindow.latestVersion == "No response from download server")
             {
                 MatchCollection matched = rg.Matches(MainWindow.localVersion);
@@ -55,7 +55,7 @@ namespace ChromiumForWindows
             string regexpattern = @"v(.*?)-";
             Regex rg = new Regex(regexpattern);
 
-            MatchCollection matched = rg.Matches(MainWindow.latestVersion);
+            MatchCollection matched = rg.Matches(MainWindow.localVersion);
             for (int count = 0; count < matched.Count; count++)
             {
                 Console.WriteLine(matched[count].Value);

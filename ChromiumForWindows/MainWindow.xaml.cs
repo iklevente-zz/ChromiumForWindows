@@ -139,7 +139,7 @@ namespace ChromiumForWindows
 
         static void CloseUpdater()
         {
-            System.Windows.Application.Current.Shutdown();
+            Environment.Exit(0);
         }
     }
 }
