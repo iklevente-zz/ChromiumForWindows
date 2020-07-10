@@ -15,24 +15,8 @@ namespace ChromiumForWindows
             string regexpattern = @"v(.*?)-";
             Regex rg = new Regex(regexpattern);
 
-            // This is for downloading
-            if (MainWindow.latestVersion != MainWindow.localVersion)
-            {
-                MatchCollection matched = rg.Matches(MainWindow.latestVersion);
-                for (int count = 0; count < matched.Count; count++)
-                {
-                    Console.WriteLine(matched[count].Value);
-                    string regexresult = matched[count].Value.ToString();
-                    Console.WriteLine(regexresult + "is the the found modification in the downloadable, released GitHub file name.");
-
-                    Console.WriteLine("That v and - are causing a mess, let's get rid of them");
-                    finalregexresult = regexresult.Trim('v', '-');
-                    Console.WriteLine("The final regexed version result is: " + finalregexresult + "Adding it to the download file function...");
-                }
-            }
-
             //This is for letting the program know where is the Chrome.exe file to run it. This code will let Chromium to run even if there is no internet and it can't update.
-            else if (MainWindow.latestVersion == MainWindow.localVersion || MainWindow.latestVersion == "No response from download server")
+            if (MainWindow.latestVersion == MainWindow.localVersion || MainWindow.latestVersion == "No response from download server")
             {
                 MatchCollection matched = rg.Matches(MainWindow.localVersion);
                 for (int count = 0; count < matched.Count; count++)
@@ -44,6 +28,22 @@ namespace ChromiumForWindows
                     Console.WriteLine("That v and - are causing a mess, let's get rid of them");
                     finalregexresult = regexresult.Trim('v', '-');
                     Console.WriteLine("The final regexed version result is: " + finalregexresult);
+                }
+            }
+
+            // This is for downloading
+            else if (MainWindow.latestVersion != MainWindow.localVersion)
+            {
+                MatchCollection matched = rg.Matches(MainWindow.latestVersion);
+                for (int count = 0; count < matched.Count; count++)
+                {
+                    Console.WriteLine(matched[count].Value);
+                    string regexresult = matched[count].Value.ToString();
+                    Console.WriteLine(regexresult + "is the the found modification in the downloadable, released GitHub file name.");
+
+                    Console.WriteLine("That v and - are causing a mess, let's get rid of them");
+                    finalregexresult = regexresult.Trim('v', '-');
+                    Console.WriteLine("The final regexed version result is: " + finalregexresult + "Adding it to the download file function...");
                 }
             }
         }

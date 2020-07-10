@@ -96,20 +96,21 @@ namespace ChromiumForWindows
             {
                 using (WebResponse response = e.Response)
                 {
-                    latestVersion = "No response from website";
+                    latestVersion = "No response from download server";
+                    MessageBox.Show("No response from download server");
                 }
             }
 
             // Here the program decides,l if it needs to be updated
-            if (localVersion != latestVersion)
-            {
-                StartAndWaitForUpdate();
-            }
-            else if (latestVersion == "No response from website")
+            if (latestVersion == "No response from download server")
             {
                 StartChromium();
                 CloseUpdater();
                 return;
+            }
+            else if (localVersion != latestVersion)
+            {
+                StartAndWaitForUpdate();
             }
             else
             {

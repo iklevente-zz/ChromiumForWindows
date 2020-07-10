@@ -104,15 +104,15 @@ namespace ChromiumForWindows
             }
 
             // Here the program decides, if it needs to be updated
-            if (localVersion != latestVersion)
-            {
-                StartAndWaitForUpdate();
-            }
-            else if (latestVersion == "No response from download server")
+            if (latestVersion == "No response from download server")
             {
                 StartChromium();
                 CloseUpdater();
                 return;
+            }
+            else if (localVersion != latestVersion)
+            {
+                StartAndWaitForUpdate();
             }
             else if (localVersion == latestVersion)
             {
