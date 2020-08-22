@@ -5,6 +5,8 @@ Widevine, synchronisation and all-codecs are enabled.
 The ungoogled version is based on [Marmaduke's Chromium builds](https://github.com/macchrome/winchrome/).
 Widevine, and all-codecs+ are enabled. Sync disabled.
 
+**Update: Sorry for not releasing any updates. I have an enormous amount of exams these days, but I will finish them by the end of the month. Updating the project will be my main priority then. I am happy with anyones contribution meanwhile. 🙂**
+
 **Important: You will need .NET Core Runtime to run the program. Download it from [here](https://dotnet.microsoft.com/download).**
 
 Every time you run Chromium it checks for a newer version and if needed it will update it in seconds.
