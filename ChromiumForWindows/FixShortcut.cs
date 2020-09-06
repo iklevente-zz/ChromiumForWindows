@@ -17,11 +17,12 @@ namespace ChromiumForWindows
         // Delete Chromium desktop shortcut and replace with the updater's shortcut:
         private static void DesktopShortcut()
         {
-            // Delete it
+            // Delete old
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             System.IO.File.Delete(Path.Combine(desktopPath, "Chromium.lnk"));
 
             // Make new shortcut: 
+            Output.WriteLine("Creating Desktop Shortcut");
             object shDesktop = (object)"Desktop";
             WshShell shell = new WshShell();
             string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + @"\Chromium.lnk";
@@ -30,15 +31,17 @@ namespace ChromiumForWindows
             shortcut.TargetPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ChromiumLauncher.exe";
             shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\Application\\chrome.exe";
             shortcut.Save();
+            Output.WriteLine("Desktop Shortcut done");
         }
 
         // Delete Chromium Start Menu shortcut and replace with the updater's shortcut:
         private static void StartMenuShortcut()
         {
-            // Delete it
+            // Delete old
             string startMenuPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Start Menu\\Programs\\";
             System.IO.File.Delete(Path.Combine(startMenuPath, "Chromium.lnk"));
 
+            Output.WriteLine("Creating Start Menu Shortcuts");
             // Make new shortcut:
             string pathToExe = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ChromiumLauncher.exe";
             string StartMenuPath = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu);
@@ -57,6 +60,7 @@ namespace ChromiumForWindows
             shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\Application\\chrome.exe";
             shortcut.TargetPath = pathToExe;
             shortcut.Save();
+            Output.WriteLine("Start Menu Shortcut done");
         }
     }
 }

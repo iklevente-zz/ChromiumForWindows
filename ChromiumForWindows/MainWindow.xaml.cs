@@ -28,6 +28,7 @@ namespace ChromiumForWindows
         public MainWindow()
         {
             CheckChromiumDir();
+
             CheckVersion();
 
             InitializeComponent();
@@ -46,17 +47,17 @@ namespace ChromiumForWindows
                 // Determine whether the directory exists.
                 if (Directory.Exists(chromiumPath))
                 {
-                    Console.WriteLine("Chromium directory exists.");
+                    Output.WriteLine("Chromium directory exists.");
                     return;
                 }
 
                 // Try to create the directory.
                 DirectoryInfo di = Directory.CreateDirectory(chromiumPath);
-                Console.WriteLine("Chromium directory was created successfully at {0}.", Directory.GetCreationTime(chromiumPath));
+                Output.WriteLine("Chromium directory was created successfully at " + Directory.GetCreationTime(chromiumPath));
             }
             catch (Exception e)
             {
-                Console.WriteLine("The process failed: {0}", e.ToString());
+                Output.WriteLine("The process failed: " + e.ToString());
                 System.Windows.Application.Current.Shutdown();
             }
             finally { }
@@ -69,7 +70,7 @@ namespace ChromiumForWindows
         {
             if (System.IO.File.Exists(chromiumPath + "\\versioninfo.txt"))
             {
-                Console.WriteLine("versioninfo.txt is already exists!");
+                Output.WriteLine("versioninfo.txt is already exists!");
             }
             else
             {
@@ -79,7 +80,7 @@ namespace ChromiumForWindows
 
             // Checks the local version
             localVersion = System.IO.File.ReadAllText(chromiumPath + "\\versioninfo.txt");
-            Console.WriteLine(localVersion + " is the current local version.");
+            Output.WriteLine(localVersion + " is the current local version.");
 
 
             // Checks the version from the website. It will use the link below, which will redirect to the latest version. string latestVersion will be equal to the redirected URL.
@@ -114,8 +115,8 @@ namespace ChromiumForWindows
             }
             else
             {
-                Console.WriteLine("Local version is the same as latest version!");
-                Console.WriteLine("Exiting!");
+                Output.WriteLine("Local version is the same as latest version!");
+                Output.WriteLine("Exiting!");
                 StartChromium();
                 CloseUpdater();
             }
@@ -123,18 +124,19 @@ namespace ChromiumForWindows
 
         private async void StartAndWaitForUpdate()
         {
-            Console.WriteLine("Waiting for the update to be completed.");
+            Output.WriteLine("Waiting for the update to be completed.");
             await Task.Run(() => Update.StartUpdate());
-            Console.WriteLine("Update completed.");
-            Console.WriteLine("Waiting for Shortcuts to be created.");
+            Output.WriteLine("Update completed.");
+            Output.WriteLine("Waiting for Shortcuts to be created.");
             await Task.Run(() => FixShortcut.MakeShortcuts());
-            Console.WriteLine("Shortcuts are done!");
+            Output.WriteLine("Shortcuts are done!");
             StartChromium();
             CloseUpdater();
         }
 
         public static void StartChromium()
         {
+            Output.WriteLine("Starting Chromium...");
             System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
         }
 
