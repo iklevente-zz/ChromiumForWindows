@@ -59,7 +59,6 @@ namespace ChromiumForWindows
             catch (Exception e)
             {
                 Output.WriteLine("The process failed: " + e.ToString());
-                MessageBox.Show("The process failed: " + e.ToString());
                 System.Windows.Application.Current.Shutdown();
             }
             finally { }
