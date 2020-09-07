@@ -24,7 +24,7 @@ namespace ChromiumForWindows
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
             shortcut.Description = "Open Chromium";
             shortcut.TargetPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ChromiumLauncher.exe";
-            shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows\\chrome.exe";
+            shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-2_Win64\\chrome.exe";
             shortcut.Save();
         }
 
@@ -50,7 +50,7 @@ namespace ChromiumForWindows
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
 
             shortcut.Description = "Open Chromium";
-            shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows\\chrome.exe";
+            shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-2_Win64\\chrome.exe";
             shortcut.TargetPath = pathToExe;
             shortcut.Save();
         }

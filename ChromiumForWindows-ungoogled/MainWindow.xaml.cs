@@ -140,7 +140,7 @@ namespace ChromiumForWindows
             //Get the unique GitHub release folder name to be able to get te path for chrome.exe
             GetFileVersion.GetVersionInfo();
 
-            string ungoogledPath = chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_windows";
+            string ungoogledPath = chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-2_Win64";
             System.Diagnostics.Process.Start(System.IO.Path.Combine(ungoogledPath + "\\chrome.exe"));
         }
 
