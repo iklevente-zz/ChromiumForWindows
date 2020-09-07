@@ -23,11 +23,11 @@ namespace ChromiumForWindows
                 {
                     Console.WriteLine(matched[count].Value);
                     string regexresult = matched[count].Value.ToString();
-                    Console.WriteLine(regexresult + "is the the found modification in the local version's file name.");
+                    Output.WriteLine(regexresult + " is the the found modification in the local version's file name.");
 
-                    Console.WriteLine("That v and - are causing a mess, let's get rid of them");
+                    Output.WriteLine("That v and - are causing a mess, let's get rid of them");
                     finalregexresult = regexresult.Trim('v', '-');
-                    Console.WriteLine("The final regexed version result is: " + finalregexresult);
+                    Output.WriteLine("The final regexed version result is: " + finalregexresult);
                 }
             }
 
@@ -39,11 +39,11 @@ namespace ChromiumForWindows
                 {
                     Console.WriteLine(matched[count].Value);
                     string regexresult = matched[count].Value.ToString();
-                    Console.WriteLine(regexresult + "is the the found modification in the downloadable, released GitHub file name.");
+                    Output.WriteLine(regexresult + " is the the found modification in the downloadable, released GitHub file name.");
 
-                    Console.WriteLine("That v and - are causing a mess, let's get rid of them");
+                    Output.WriteLine("That v and - are causing a mess, let's get rid of them");
                     finalregexresult = regexresult.Trim('v', '-');
-                    Console.WriteLine("The final regexed version result is: " + finalregexresult + "Adding it to the download file function...");
+                    Output.WriteLine("The final regexed version result is: " + finalregexresult + " Adding it to the download file function...");
                 }
             }
         }
@@ -60,11 +60,11 @@ namespace ChromiumForWindows
             {
                 Console.WriteLine(matched[count].Value);
                 string regexresult = matched[count].Value.ToString();
-                Console.WriteLine(regexresult + "is the the found modification in the downloadable, released GitHub file name.");
+                Output.WriteLine(regexresult + " is the the found modification in the downloadable, released GitHub file name.");
 
-                Console.WriteLine("That v and - are causing a mess, let's get rid of them");
+                Output.WriteLine("That v and - are causing a mess, let's get rid of them");
                 finalregexresult = regexresult.Trim('v', '-');
-                Console.WriteLine("The final regexed version result is: " + finalregexresult + "Adding it to the download file function...");
+                Output.WriteLine("The final regexed version result is: " + finalregexresult + " Adding it to the download file function...");
             }
         }
 

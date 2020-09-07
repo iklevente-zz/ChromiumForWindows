@@ -14,14 +14,14 @@ namespace ChromiumForWindows
         public static void StartUpdate()
         {
             // Closes all Chromium tasks to be able to update:
-            Console.WriteLine("Closing Chromium, if opened...");
+            Output.WriteLine("Closing Chromium, if opened...");
             Process[] processes = Process.GetProcessesByName("Chrome");
             foreach (var process in processes)
             {
                 if (process.MainModule.FileName.StartsWith(MainWindow.chromiumPath))
                 {
                     process.Kill();
-                    Console.WriteLine("Chromium process killed!");
+                    Output.WriteLine("Chromium process killed!");
                 }
             }
 
@@ -29,7 +29,7 @@ namespace ChromiumForWindows
             if (File.Exists(MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z"))
             {
                 System.IO.File.Delete(MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z");
-                Console.WriteLine("Deleted old Chromium installer (latest_ungoogled_chromium.7z).");
+                Output.WriteLine("Deleted old Chromium installer (latest_ungoogled_chromium.7z).");
             }
 
             // Deletes old Chromium directory if exists: (To not leave multiple Chromium installations) // Would be cool to make it easier
@@ -37,7 +37,7 @@ namespace ChromiumForWindows
             if (Directory.Exists(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-2_Win64"))
             {
                 System.IO.Directory.Delete(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-2_Win64", true);
-                Console.WriteLine("Deleted old Chromium folder.");
+                Output.WriteLine("Deleted old Chromium folder.");
             }
 
             //Get the unique GitHub release filename
@@ -45,18 +45,18 @@ namespace ChromiumForWindows
 
             // Changing version info to the latest one:
             System.IO.File.WriteAllText(MainWindow.chromiumPath + "\\versioninfo.txt", MainWindow.latestVersion);
-            Console.WriteLine("There is a new Chromium out there! Updating...");
-            Console.WriteLine("Updating versioninfo.txt is done! The program will update Chromium to the latest version now!");
+            Output.WriteLine("There is a new Chromium out there! Updating...");
+            Output.WriteLine("Updating versioninfo.txt is done! The program will update Chromium to the latest version now!");
 
             // Downloading and updating Chromium to the latest version:
             using (WebClient webClient = new WebClient())
             {
                 webClient.DownloadFile("https://github.com/macchrome/winchrome/releases/latest/download/ungoogled-chromium-" + GetFileVersion.finalregexresult + "-2_Win64.7z", MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z");
             }
-            Console.WriteLine("Latest Chromium (latest_ungoogled_chromium.7z) downloaded");
+            Output.WriteLine("Latest Chromium (latest_ungoogled_chromium.7z) downloaded");
 
             // Extract new ungoogled Chromium
-            Console.WriteLine("Installing...");
+            Output.WriteLine("Installing...");
             string zPath = "Resources\\7-Zip x64\\7za.exe"; //add to proj and set CopyToOuputDir
             string sourceArchive = MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z";
             string destination = MainWindow.chromiumPath;
@@ -74,7 +74,7 @@ namespace ChromiumForWindows
                 //handle error
                 MessageBox.Show("There was an error while extracting the latest Chromium.");
             }
-            Console.WriteLine("Installation is done.");
+            Output.WriteLine("Installation is done.");
         }
     }
 }
