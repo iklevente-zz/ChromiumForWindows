@@ -5,6 +5,8 @@ Widevine, synchronisation and all-codecs are enabled.
 The ungoogled version is based on [Marmaduke's Chromium builds](https://github.com/macchrome/winchrome/).
 Widevine, and all-codecs+ are enabled. Sync disabled.
 
+**Update:** Marmaduke switched back to the original release name, so Ungoogled installer was fixed/updated in 1.5.3 release on **22/09/2020**.
+
 **Important: You will need .NET Core Runtime to run the program. Download it from [here](https://dotnet.microsoft.com/download).**
 
 Every time you run Chromium it checks for a newer version and if needed it will update it in seconds.
