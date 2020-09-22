@@ -34,9 +34,9 @@ namespace ChromiumForWindows
 
             // Deletes old Chromium directory if exists: (To not leave multiple Chromium installations) // Would be cool to make it easier
             GetFileVersion.GetOldVersionInfo();
-            if (Directory.Exists(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-2_Win64"))
+            if (Directory.Exists(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64"))
             {
-                System.IO.Directory.Delete(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-2_Win64", true);
+                System.IO.Directory.Delete(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64", true);
                 Output.WriteLine("Deleted old Chromium folder.");
             }
 
@@ -51,7 +51,7 @@ namespace ChromiumForWindows
             // Downloading and updating Chromium to the latest version:
             using (WebClient webClient = new WebClient())
             {
-                webClient.DownloadFile("https://github.com/macchrome/winchrome/releases/latest/download/ungoogled-chromium-" + GetFileVersion.finalregexresult + "-2_Win64.7z", MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z");
+                webClient.DownloadFile("https://github.com/macchrome/winchrome/releases/latest/download/ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64.7z", MainWindow.chromiumPath + "\\latest_ungoogled_chromium.7z");
             }
             Output.WriteLine("Latest Chromium (latest_ungoogled_chromium.7z) downloaded");
 
