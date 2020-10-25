@@ -9,6 +9,54 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Chromium Builds\Hibbiki\ChromiumLauncher.deps.json" />
+    <None Remove="Chromium Builds\Hibbiki\ChromiumLauncher.dll" />
+    <None Remove="Chromium Builds\Hibbiki\ChromiumLauncher.exe" />
+    <None Remove="Chromium Builds\Hibbiki\ChromiumLauncher.pdb" />
+    <None Remove="Chromium Builds\Hibbiki\ChromiumLauncher.runtimeconfig.dev.json" />
+    <None Remove="Chromium Builds\Hibbiki\ChromiumLauncher.runtimeconfig.json" />
+    <None Remove="Chromium Builds\Hibbiki\Interop.IWshRuntimeLibrary.dll" />
+    <None Remove="Chromium Builds\Hibbiki\MaterialDesignColors.dll" />
+    <None Remove="Chromium Builds\Hibbiki\MaterialDesignThemes.Wpf.dll" />
+    <None Remove="Chromium Builds\Marmaduke\ChromiumLauncher.deps.json" />
+    <None Remove="Chromium Builds\Marmaduke\ChromiumLauncher.dll" />
+    <None Remove="Chromium Builds\Marmaduke\ChromiumLauncher.exe" />
+    <None Remove="Chromium Builds\Marmaduke\ChromiumLauncher.pdb" />
+    <None Remove="Chromium Builds\Marmaduke\ChromiumLauncher.runtimeconfig.dev.json" />
+    <None Remove="Chromium Builds\Marmaduke\ChromiumLauncher.runtimeconfig.json" />
+    <None Remove="Chromium Builds\Marmaduke\Interop.IWshRuntimeLibrary.dll" />
+    <None Remove="Chromium Builds\Marmaduke\MaterialDesignColors.dll" />
+    <None Remove="Chromium Builds\Marmaduke\MaterialDesignThemes.Wpf.dll" />
+    <None Remove="Chromium Builds\Marmaduke\Resources\7-Zip x64\7za.dll" />
+    <None Remove="Chromium Builds\Marmaduke\Resources\7-Zip x64\7za.exe" />
+    <None Remove="Chromium Builds\Marmaduke\Resources\7-Zip x64\7zxa.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Chromium Builds\Hibbiki\ChromiumLauncher.deps.json" />
+    <EmbeddedResource Include="Chromium Builds\Hibbiki\ChromiumLauncher.dll" />
+    <EmbeddedResource Include="Chromium Builds\Hibbiki\ChromiumLauncher.exe" />
+    <EmbeddedResource Include="Chromium Builds\Hibbiki\ChromiumLauncher.pdb" />
+    <EmbeddedResource Include="Chromium Builds\Hibbiki\ChromiumLauncher.runtimeconfig.dev.json" />
+    <EmbeddedResource Include="Chromium Builds\Hibbiki\ChromiumLauncher.runtimeconfig.json" />
+    <EmbeddedResource Include="Chromium Builds\Hibbiki\Interop.IWshRuntimeLibrary.dll" />
+    <EmbeddedResource Include="Chromium Builds\Hibbiki\MaterialDesignColors.dll" />
+    <EmbeddedResource Include="Chromium Builds\Hibbiki\MaterialDesignThemes.Wpf.dll" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\ChromiumLauncher.deps.json" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\ChromiumLauncher.dll" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\ChromiumLauncher.exe" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\ChromiumLauncher.pdb" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\ChromiumLauncher.runtimeconfig.dev.json" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\ChromiumLauncher.runtimeconfig.json" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\Interop.IWshRuntimeLibrary.dll" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\MaterialDesignColors.dll" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\MaterialDesignThemes.Wpf.dll" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\Resources\7-Zip x64\7za.dll" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\Resources\7-Zip x64\7za.exe" />
+    <EmbeddedResource Include="Chromium Builds\Marmaduke\Resources\7-Zip x64\7zxa.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
   </ItemGroup>
 

@@ -30,23 +30,19 @@
         </Rectangle>
 
         <TextBlock x:Name="ChromiumBuildText"
-            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Chromium build:" FontSize="14" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="103" Visibility="Visible" FontWeight="Normal" Margin="56,112,0,0"/>
+            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Chromium build:" FontSize="16" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="126" Visibility="Visible" FontWeight="Normal" Margin="56,90,0,0"/>
 
-        <ComboBox
-            materialDesign:HintAssist.Hint="" Margin="225,105,68,0" VerticalAlignment="Top" Height="30" SelectedIndex="0" Initialized="ComboBox_Initialized">
-            <ComboBoxItem>
-                stable (Hibbiki)
-            </ComboBoxItem>
-            <ComboBoxItem>
-                ungoogled (Marmaduke)
-            </ComboBoxItem>
+        <ComboBox x:Name="BuildComboBox"
+            materialDesign:HintAssist.Hint="" Margin="225,85,49,0" VerticalAlignment="Top" Height="30" SelectedIndex="0" BorderBrush="#894687F4" Background="#00000000" SelectionChanged="ComboBox_SelectionChanged" >
+            <ComboBoxItem>stable (Hibbiki)</ComboBoxItem>
+            <ComboBoxItem>ungoogled (Marmaduke)</ComboBoxItem>
         </ComboBox>
 
-        <materialDesign:Chip Margin="0,148,311,0" Content="up-to-date" HorizontalAlignment="Right" Width="83" Height="32" VerticalAlignment="Top"/>
-        <materialDesign:Chip Margin="0,148,143,0" Content="all-codecs" HorizontalAlignment="Right" Width="83" Height="32" VerticalAlignment="Top"/>
-        <materialDesign:Chip Margin="0,148,231,0" Content="widevine" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Top"/>
-        <materialDesign:Chip Margin="0,148,87,0" Content="sync" HorizontalAlignment="Right" Width="51" Height="32" VerticalAlignment="Top"/>
-        <materialDesign:Chip Margin="0,185,325,0" Content="no-sync" Height="32" VerticalAlignment="Top" Width="69" HorizontalAlignment="Right"/>
-        <materialDesign:Chip Margin="130,185,0,0" Content="win64" Height="32" VerticalAlignment="Top" Width="59"/>
+        <materialDesign:Chip Margin="0,136,317,0" Content="up-to-date" HorizontalAlignment="Right" Width="83" Height="32" VerticalAlignment="Top" Background="#FF76F399"/>
+        <materialDesign:Chip Margin="0,136,149,0" Content="all-codecs" HorizontalAlignment="Right" Width="83" Height="32" VerticalAlignment="Top"/>
+        <materialDesign:Chip Margin="0,136,237,0" Content="widevine" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Top"/>
+        <materialDesign:Chip Margin="0,136,93,0" Content="sync" HorizontalAlignment="Right" Width="51" Height="32" VerticalAlignment="Top"/>
+        <materialDesign:Chip Margin="0,173,331,0" Content="no-sync" Height="32" VerticalAlignment="Top" Width="69" HorizontalAlignment="Right"/>
+        <materialDesign:Chip Margin="0,173,264,0" Content="win64" Height="32" VerticalAlignment="Top" Width="59" HorizontalAlignment="Right" Background="#FF76F399"/>
     </Grid>
 </Window>
