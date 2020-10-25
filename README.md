@@ -31,6 +31,7 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases/la
  - woolyss https://chromium.woolyss.com/ +rep 🍺
  - Hibbiki https://github.com/Hibbiki/chromium-win64 +rep 🍺
  - Marmaduke https://github.com/macchrome/winchrome/ +rep 🍺
+ - mikey-t https://gist.github.com/mikey-t +rep 🍺
  
  ## Buy me a coffee ☕:
 **[PayPal](https://www.paypal.me/iklevi)**
