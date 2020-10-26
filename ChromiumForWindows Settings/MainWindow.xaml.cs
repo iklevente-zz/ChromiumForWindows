@@ -130,6 +130,10 @@ namespace ChromiumForWindows_Settings
             if (BuildComboBox.SelectedIndex == 0)
             {
                 Cleanup();
+
+                // This is where it is failing right now
+                ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "ChromiumBuilds\\Hibbiki", "ChromiumLauncher.exe");
+                Output.WriteLine("Chromium extraction completed.");
             }
         }
     }

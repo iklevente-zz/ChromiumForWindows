@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
-namespace ChromiumForWindowsInstaller
+namespace ChromiumForWindows_Settings
 {
     class ExtractFiles
     {
