@@ -21,12 +21,14 @@ namespace ChromiumForWindows_Settings
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool isInitializationCompleted = false;
         public static string chromiumPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium";
         public MainWindow()
         {
-            InitializeComponent();
             CheckChromiumDir();
+            InitializeComponent();
             CheckBuild();
+            isInitializationCompleted = true;
         }
 
         // Creates/checks Chromium directory if exists
@@ -88,9 +90,7 @@ namespace ChromiumForWindows_Settings
 
         void Cleanup()
         {
-            /*// Saves current state of versioninfo.txt
-            localBuild = System.IO.File.ReadAllText(chromiumPath + "\\versioninfo.txt");*/
-
+            // Delete files
             System.IO.File.Delete(chromiumPath + "\\ChromiumLauncher.exe");
             System.IO.File.Delete(chromiumPath + "\\ChromiumLauncher.deps.json");
             System.IO.File.Delete(chromiumPath + "\\ChromiumLauncher.dll");
@@ -101,39 +101,51 @@ namespace ChromiumForWindows_Settings
             System.IO.File.Delete(chromiumPath + "\\MaterialDesignColors.dll");
             System.IO.File.Delete(chromiumPath + "\\MaterialDesignThemes.Wpf.dll");
 
-            // This try catch exception mess can delete both directories (Application and Resources) independently. I needed to put in a try catch exception cycle because it would crash if one of the directiories does not exist.
-            try
+            // Delete folders (if exists cycle because it would throw an exception)
+            if (Directory.Exists(chromiumPath + "\\Application"))
             {
                 System.IO.Directory.Delete(chromiumPath + "\\Application", true);
+            }
+            if (Directory.Exists(chromiumPath + "\\Resources"))
+            {
                 System.IO.Directory.Delete(chromiumPath + "\\Resources", true);
             }
-            catch (Exception)
-            {
-                Output.WriteLine("Application and/or Resources directory is successfully deleted.");
-
-                try
-                {
-                    System.IO.Directory.Delete(chromiumPath + "\\Resources", true);
-                }
-                catch (Exception)
-                {
-                    // Big brain move here if both directories does not exist
-                }
-            }
-
-            /*// Recreates the deleted versioninfo.txt
-            System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\versioninfo.txt", localBuild);*/
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (BuildComboBox.SelectedIndex == 0)
             {
+                if (isInitializationCompleted == false)
+                {
+                    // Do nothing (because it would extract Hibbiki, since void ComboBox_SelectionChanged() calls sooner than void CheckBuild())
+                }
+                else
+                {
+                    Cleanup();
+
+                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.deps.json");
+                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.dll");
+                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.exe");
+                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.pdb");
+                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.runtimeconfig.dev.json");
+                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.runtimeconfig.json");
+                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "Interop.IWshRuntimeLibrary.dll");
+                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "MaterialDesignColors.dll");
+                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "MaterialDesignThemes.Wpf.dll");
+
+                    Output.WriteLine("Hibbiki Chromium extraction completed.");
+
+                    System.IO.File.Delete(chromiumPath + "\\versioninfo.txt");
+                    System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\versioninfo.txt", "Hibbiki");
+                    Output.WriteLine("Saved choosen build.");
+                }
+            }
+            if (BuildComboBox.SelectedIndex == 1)
+            {
                 Cleanup();
 
-                // This is where it is failing right now
-                ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "ChromiumBuilds\\Hibbiki", "ChromiumLauncher.exe");
-                Output.WriteLine("Chromium extraction completed.");
+                // Can't extract Resources folder with the above used method, might gonna zip the whole thing and C# ZipExtract it somehow
             }
         }
     }
