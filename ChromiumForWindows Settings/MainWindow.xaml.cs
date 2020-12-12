@@ -55,7 +55,7 @@ namespace ChromiumForWindows_Settings
             finally { }
         }
 
-        public static string localBuild = "";
+        public static string localBuild = null;
         void CheckBuild()
         {
             if (System.IO.File.Exists(chromiumPath + "\\versioninfo.txt"))
@@ -145,7 +145,11 @@ namespace ChromiumForWindows_Settings
             {
                 Cleanup();
 
-                // Can't extract Resources folder with the above used method, might gonna zip the whole thing and C# ZipExtract it somehow
+                /*
+                 * New plan: Instead of including all the files in this Settings UI it will be uploaded to ChromiumForWindows's release site and the Settings manager will download and extract it from there.
+                 * It will be more efficient and way more smaller in file size. This also means that you don't have to come back regularly because the Settings Manager will update the Chromium updaters.
+                 * I will start working on it in the next few days.
+                */
             }
         }
     }

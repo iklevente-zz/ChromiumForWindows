@@ -35,9 +35,9 @@
     <None Remove="Marmaduke\Interop.IWshRuntimeLibrary.dll" />
     <None Remove="Marmaduke\MaterialDesignColors.dll" />
     <None Remove="Marmaduke\MaterialDesignThemes.Wpf.dll" />
-    <None Remove="Marmaduke\Resources\7-Zip x64\7za.dll" />
-    <None Remove="Marmaduke\Resources\7-Zip x64\7za.exe" />
-    <None Remove="Marmaduke\Resources\7-Zip x64\7zxa.dll" />
+    <None Remove="Resources_for_Marmaduke\7-Zip x64\7za.dll" />
+    <None Remove="Resources_for_Marmaduke\7-Zip x64\7za.exe" />
+    <None Remove="Resources_for_Marmaduke\7-Zip x64\7zxa.dll" />
     <None Include="..\ChromiumForWindows\stable (Hibbiki)\Images\Chromium_Material_Icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -67,9 +67,9 @@
     <EmbeddedResource Include="Marmaduke\Interop.IWshRuntimeLibrary.dll" />
     <EmbeddedResource Include="Marmaduke\MaterialDesignColors.dll" />
     <EmbeddedResource Include="Marmaduke\MaterialDesignThemes.Wpf.dll" />
-    <EmbeddedResource Include="Marmaduke\Resources\7-Zip x64\7za.dll" />
-    <EmbeddedResource Include="Marmaduke\Resources\7-Zip x64\7za.exe" />
-    <EmbeddedResource Include="Marmaduke\Resources\7-Zip x64\7zxa.dll" />
+    <EmbeddedResource Include="Resources_for_Marmaduke\7-Zip x64\7za.dll" />
+    <EmbeddedResource Include="Resources_for_Marmaduke\7-Zip x64\7za.exe" />
+    <EmbeddedResource Include="Resources_for_Marmaduke\7-Zip x64\7zxa.dll" />
   </ItemGroup>
 
   <ItemGroup>
