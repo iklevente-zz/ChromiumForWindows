@@ -18,26 +18,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Hibbiki\ChromiumLauncher.deps.json" />
-    <None Remove="Hibbiki\ChromiumLauncher.dll" />
-    <None Remove="Hibbiki\ChromiumLauncher.pdb" />
-    <None Remove="Hibbiki\ChromiumLauncher.runtimeconfig.dev.json" />
-    <None Remove="Hibbiki\ChromiumLauncher.runtimeconfig.json" />
-    <None Remove="Hibbiki\Interop.IWshRuntimeLibrary.dll" />
-    <None Remove="Hibbiki\MaterialDesignColors.dll" />
-    <None Remove="Hibbiki\MaterialDesignThemes.Wpf.dll" />
-    <None Remove="Marmaduke\ChromiumLauncher.deps.json" />
-    <None Remove="Marmaduke\ChromiumLauncher.dll" />
-    <None Remove="Marmaduke\ChromiumLauncher.exe" />
-    <None Remove="Marmaduke\ChromiumLauncher.pdb" />
-    <None Remove="Marmaduke\ChromiumLauncher.runtimeconfig.dev.json" />
-    <None Remove="Marmaduke\ChromiumLauncher.runtimeconfig.json" />
-    <None Remove="Marmaduke\Interop.IWshRuntimeLibrary.dll" />
-    <None Remove="Marmaduke\MaterialDesignColors.dll" />
-    <None Remove="Marmaduke\MaterialDesignThemes.Wpf.dll" />
-    <None Remove="Resources_for_Marmaduke\7-Zip x64\7za.dll" />
-    <None Remove="Resources_for_Marmaduke\7-Zip x64\7za.exe" />
-    <None Remove="Resources_for_Marmaduke\7-Zip x64\7zxa.dll" />
     <None Include="..\ChromiumForWindows\stable (Hibbiki)\Images\Chromium_Material_Icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -49,31 +29,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Hibbiki\ChromiumLauncher.deps.json" />
-    <EmbeddedResource Include="Hibbiki\ChromiumLauncher.dll" />
-    <EmbeddedResource Include="Hibbiki\ChromiumLauncher.exe" />
-    <EmbeddedResource Include="Hibbiki\ChromiumLauncher.pdb" />
-    <EmbeddedResource Include="Hibbiki\ChromiumLauncher.runtimeconfig.dev.json" />
-    <EmbeddedResource Include="Hibbiki\ChromiumLauncher.runtimeconfig.json" />
-    <EmbeddedResource Include="Hibbiki\Interop.IWshRuntimeLibrary.dll" />
-    <EmbeddedResource Include="Hibbiki\MaterialDesignColors.dll" />
-    <EmbeddedResource Include="Hibbiki\MaterialDesignThemes.Wpf.dll" />
-    <EmbeddedResource Include="Marmaduke\ChromiumLauncher.deps.json" />
-    <EmbeddedResource Include="Marmaduke\ChromiumLauncher.dll" />
-    <EmbeddedResource Include="Marmaduke\ChromiumLauncher.exe" />
-    <EmbeddedResource Include="Marmaduke\ChromiumLauncher.pdb" />
-    <EmbeddedResource Include="Marmaduke\ChromiumLauncher.runtimeconfig.dev.json" />
-    <EmbeddedResource Include="Marmaduke\ChromiumLauncher.runtimeconfig.json" />
-    <EmbeddedResource Include="Marmaduke\Interop.IWshRuntimeLibrary.dll" />
-    <EmbeddedResource Include="Marmaduke\MaterialDesignColors.dll" />
-    <EmbeddedResource Include="Marmaduke\MaterialDesignThemes.Wpf.dll" />
-    <EmbeddedResource Include="Resources_for_Marmaduke\7-Zip x64\7za.dll" />
-    <EmbeddedResource Include="Resources_for_Marmaduke\7-Zip x64\7za.exe" />
-    <EmbeddedResource Include="Resources_for_Marmaduke\7-Zip x64\7zxa.dll" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

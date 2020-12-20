@@ -38,11 +38,18 @@
             <ComboBoxItem>ungoogled (Marmaduke)</ComboBoxItem>
         </ComboBox>
 
-        <materialDesign:Chip Margin="0,136,317,0" Content="up-to-date" HorizontalAlignment="Right" Width="83" Height="32" VerticalAlignment="Top" Background="#FF76F399"/>
-        <materialDesign:Chip Margin="0,136,149,0" Content="all-codecs" HorizontalAlignment="Right" Width="83" Height="32" VerticalAlignment="Top"/>
-        <materialDesign:Chip Margin="0,136,237,0" Content="widevine" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Top"/>
-        <materialDesign:Chip Margin="0,136,93,0" Content="sync" HorizontalAlignment="Right" Width="51" Height="32" VerticalAlignment="Top"/>
-        <materialDesign:Chip Margin="0,173,331,0" Content="no-sync" Height="32" VerticalAlignment="Top" Width="69" HorizontalAlignment="Right"/>
-        <materialDesign:Chip Margin="0,173,264,0" Content="win64" Height="32" VerticalAlignment="Top" Width="59" HorizontalAlignment="Right" Background="#FF76F399"/>
+        <materialDesign:Chip Margin="0,136,317,0" Content="up-to-date" HorizontalAlignment="Right" Width="83" Height="32" VerticalAlignment="Top" Background="#FF76F399" IsEnabled="False"/>
+        <materialDesign:Chip Margin="0,136,149,0" Content="all-codecs" HorizontalAlignment="Right" Width="83" Height="32" VerticalAlignment="Top" IsEnabled="False"/>
+        <materialDesign:Chip Margin="0,136,237,0" Content="widevine" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Top" IsEnabled="False"/>
+        <materialDesign:Chip Margin="0,136,93,0" Content="sync" HorizontalAlignment="Right" Width="51" Height="32" VerticalAlignment="Top" IsEnabled="False"/>
+        <materialDesign:Chip Margin="0,173,331,0" Content="no-sync" Height="32" VerticalAlignment="Top" Width="69" HorizontalAlignment="Right" IsEnabled="False"/>
+        <materialDesign:Chip Margin="0,173,264,0" Content="win64" Height="32" VerticalAlignment="Top" Width="59" HorizontalAlignment="Right" Background="#FF76F399" IsEnabled="False"/>
+
+        <ProgressBar x:Name="ApplyingChangesProgressBar"
+            Style="{StaticResource MaterialDesignCircularProgressBar}"
+            Value="0"
+            IsIndeterminate="True" Foreground="#FF4285F4" Margin="0,715,127,0" HorizontalAlignment="Right" Width="20" Height="20" VerticalAlignment="Top" Visibility="Hidden"/>
+        <TextBlock x:Name="ApplyingChangesText"
+            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Applying changes" FontSize="16" Height="19" VerticalAlignment="Top" HorizontalAlignment="Center" Width="126" Visibility="Hidden" FontWeight="Normal" Margin="0,715,0,0"/>
     </Grid>
 </Window>

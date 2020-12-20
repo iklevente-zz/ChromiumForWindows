@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;*/
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
+/*using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Shapes;*/
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ChromiumForWindows_Settings
 {
@@ -23,9 +24,11 @@ namespace ChromiumForWindows_Settings
     {
         bool isInitializationCompleted = false;
         public static string chromiumPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium";
+        public static string latestLocalChromiumBuild = null;
         public MainWindow()
         {
             CheckChromiumDir();
+            Download.CheckAvalibility();
             InitializeComponent();
             CheckBuild();
             isInitializationCompleted = true;
@@ -56,7 +59,7 @@ namespace ChromiumForWindows_Settings
         }
 
         public static string localBuild = null;
-        void CheckBuild()
+        private async void CheckBuild()
         {
             if (System.IO.File.Exists(chromiumPath + "\\versioninfo.txt"))
             {
@@ -74,17 +77,35 @@ namespace ChromiumForWindows_Settings
             Output.WriteLine(localBuild + " is the current local version.");
 
             // Sets the ComboBox to the inspected/checked Chromium build
-            if (localBuild == "NULL")
+            if (localBuild.Contains("Hibbiki"))
             {
                 BuildComboBox.SelectedIndex = 0;
-            }
-            else if (localBuild.Contains("Hibbiki"))
-            {
-                BuildComboBox.SelectedIndex = 0;
+                latestLocalChromiumBuild = "Hibbiki";
             }
             else if (localBuild.Contains("macchrome"))
             {
                 BuildComboBox.SelectedIndex = 1;
+                latestLocalChromiumBuild = "Marmaduke";
+            }
+            else
+            {
+                // This happends at the default Comobox Setting (first time initilaization) or if somehow you mess up the versioninfo.txt file
+                // This will install the default Chromium build which is Hibbiki's build.
+
+                BuildComboBox.SelectedIndex = 0;
+
+
+                ApplyingChangesText.Visibility = Visibility.Visible;
+                ApplyingChangesProgressBar.Visibility = Visibility.Visible;
+
+                Cleanup();
+                await Task.Run(() => Download.StartHibbikiDownload());
+
+                ApplyingChangesText.Visibility = Visibility.Hidden;
+                ApplyingChangesProgressBar.Visibility = Visibility.Hidden;
+
+
+                latestLocalChromiumBuild = "Hibbiki";
             }
         }
 
@@ -100,6 +121,8 @@ namespace ChromiumForWindows_Settings
             System.IO.File.Delete(chromiumPath + "\\Interop.IWshRuntimeLibrary.dll");
             System.IO.File.Delete(chromiumPath + "\\MaterialDesignColors.dll");
             System.IO.File.Delete(chromiumPath + "\\MaterialDesignThemes.Wpf.dll");
+            System.IO.File.Delete(chromiumPath + "\\mini_installer.sync.exe");
+            System.IO.File.Delete(chromiumPath + "\\latest_ungoogled_chromium.7z");
 
             // Delete folders (if exists cycle because it would throw an exception)
             if (Directory.Exists(chromiumPath + "\\Application"))
@@ -110,46 +133,80 @@ namespace ChromiumForWindows_Settings
             {
                 System.IO.Directory.Delete(chromiumPath + "\\Resources", true);
             }
+
+            // Deletes remaining temp and ungooegled directories.
+            var uselsessTempDirs = Directory.GetDirectories(chromiumPath, "*.tmp");
+            foreach (var directory in uselsessTempDirs)
+            {
+                Directory.Delete(directory, true);
+            }
+            var uselsessDirs = Directory.GetDirectories(chromiumPath, "ungoogled-*");
+            foreach (var directory in uselsessDirs)
+            {
+                Directory.Delete(directory, true);
+            }
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (BuildComboBox.SelectedIndex == 0)
             {
                 if (isInitializationCompleted == false)
                 {
-                    // Do nothing (because it would extract Hibbiki, since void ComboBox_SelectionChanged() calls sooner than void CheckBuild())
+                    // Do nothing (because it would extract Hibbiki build at startup, when the user did not even change anything, since void ComboBox_SelectionChanged() calls sooner than void CheckBuild()). This bool is a workaround not to let it happen.
                 }
                 else
                 {
-                    Cleanup();
+                    if (Download.latestUpdaterVersion == null)
+                    {
+                        MessageBox.Show("No response from download server. Check your internet connection!");
+                    }
+                    else
+                    {
+                        ApplyingChangesText.Visibility = Visibility.Visible;
+                        ApplyingChangesProgressBar.Visibility = Visibility.Visible;
 
-                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.deps.json");
-                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.dll");
-                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.exe");
-                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.pdb");
-                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.runtimeconfig.dev.json");
-                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "ChromiumLauncher.runtimeconfig.json");
-                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "Interop.IWshRuntimeLibrary.dll");
-                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "MaterialDesignColors.dll");
-                    ExtractFiles.Extract("ChromiumForWindows_Settings", chromiumPath, "Hibbiki", "MaterialDesignThemes.Wpf.dll");
+                        Cleanup();
+                        await Task.Run(() => Download.StartHibbikiDownload());
 
-                    Output.WriteLine("Hibbiki Chromium extraction completed.");
+                        ApplyingChangesText.Visibility = Visibility.Hidden;
+                        ApplyingChangesProgressBar.Visibility = Visibility.Hidden;
 
-                    System.IO.File.Delete(chromiumPath + "\\versioninfo.txt");
-                    System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\versioninfo.txt", "Hibbiki");
-                    Output.WriteLine("Saved choosen build.");
+                        System.IO.File.Delete(chromiumPath + "\\versioninfo.txt");
+                        System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\versioninfo.txt", "Hibbiki");
+                        Output.WriteLine("Saved choosen build.");
+                    }
                 }
             }
             if (BuildComboBox.SelectedIndex == 1)
             {
-                Cleanup();
+                if (isInitializationCompleted == false)
+                {
+                    // Do nothing (because it would extract Marmaduke build at startup, when the user did not even change anything, since void ComboBox_SelectionChanged() calls sooner than void CheckBuild()). This bool is a workaround not to let it happen.
+                }
+                else
+                {
+                    if (Download.latestUpdaterVersion == null)
+                    {
+                        MessageBox.Show("No response from download server. Check your internet connection!");
+                    }
+                    else
+                    {
+                        ApplyingChangesText.Visibility = Visibility.Visible;
+                        ApplyingChangesProgressBar.Visibility = Visibility.Visible;
 
-                /*
-                 * New plan: Instead of including all the files in this Settings UI it will be uploaded to ChromiumForWindows's release site and the Settings manager will download and extract it from there.
-                 * It will be more efficient and way more smaller in file size. This also means that you don't have to come back regularly because the Settings Manager will update the Chromium updaters.
-                 * I will start working on it in the next few days.
-                */
+                        Cleanup();
+                        await Task.Run(() => Download.StartMarmadukeDownload());
+
+                        ApplyingChangesText.Visibility = Visibility.Hidden;
+                        ApplyingChangesProgressBar.Visibility = Visibility.Hidden;
+
+                        System.IO.File.Delete(chromiumPath + "\\versioninfo.txt");
+                        System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\versioninfo.txt", "macchrome");
+                        Output.WriteLine("Saved choosen build.");
+                    }
+                }
             }
         }
     }

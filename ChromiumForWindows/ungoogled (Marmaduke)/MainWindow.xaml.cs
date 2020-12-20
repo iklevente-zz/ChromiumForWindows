@@ -98,8 +98,8 @@ namespace ChromiumForWindows
             {
                 using (WebResponse response = e.Response)
                 {
-                    latestVersion = "No response from download server";
-                    MessageBox.Show("No response from download server");
+                    latestVersion = "No response from download server. Check your internet connection!";
+                    MessageBox.Show("No response from download server. Check your internet connection!");
                 }
             }
 
