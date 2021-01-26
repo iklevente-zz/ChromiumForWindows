@@ -33,8 +33,5 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases/la
  - Marmaduke https://github.com/macchrome/winchrome/ +rep 🍺
  - mikey-t https://gist.github.com/mikey-t +rep 🍺
  
- ## Buy me a coffee ☕:
-**[PayPal](https://www.paypal.me/iklevi)**
-
 
 *This project is licensed under the MIT License. Made by Ilyó Kovács Levente and the contributors.*
