@@ -98,13 +98,13 @@ namespace ChromiumForWindows
             {
                 using (WebResponse response = e.Response)
                 {
-                    latestVersion = "No response from download server. Check your internet connection!";
+                    latestVersion = "No response!";
                     MessageBox.Show("No response from download server. Check your internet connection!");
                 }
             }
 
             // Here the program decides, if it needs to be updated
-            if (latestVersion == "No response from download server")
+            if (latestVersion == "No response!")
             {
                 StartChromium();
                 CloseUpdater();
@@ -129,7 +129,7 @@ namespace ChromiumForWindows
             await Task.Run(() => Update.StartUpdate());
             Output.WriteLine("Update completed.");
             Output.WriteLine("Waiting for Shortcuts to be created.");
-            await Task.Run(() => FixShortcut.MakeShortcuts());
+            await Task.Run(() => FixShortcutAndRegedit.MakeShortcutsAndDelReg());
             Output.WriteLine("Shortcuts are done!");
             StartChromium();
             CloseUpdater();

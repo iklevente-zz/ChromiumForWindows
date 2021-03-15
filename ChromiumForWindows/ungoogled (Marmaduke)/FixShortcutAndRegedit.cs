@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using IWshRuntimeLibrary;
+using Microsoft.Win32;
+using System.Text.RegularExpressions;
 
 namespace ChromiumForWindows
 {
-    class FixShortcut
+    class FixShortcutAndRegedit
     {
-        public static void MakeShortcuts()
+        public static void MakeShortcutsAndDelReg()
         {
             DesktopShortcut();
             StartMenuShortcut();
+            DelReg();
         }
 
         // Delete Chromium desktop shortcut and replace with the updater's shortcut:
@@ -61,6 +64,26 @@ namespace ChromiumForWindows
             shortcut.TargetPath = pathToExe;
             shortcut.Save();
             Output.WriteLine("Start Menu Shortcut done");
+        }
+
+        public static void DeleteRegistryFolder(RegistryHive registryHive, string fullPathKeyToDelete)
+        {
+
+            using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
+            {
+                baseKey.DeleteSubKeyTree(fullPathKeyToDelete);
+            }
+        }
+
+        static void DelReg()
+        {
+            Output.WriteLine("Deleting Chromium registry values in order to fix the default application problem...");
+
+            var baseKeyString = $@"SOFTWARE\Classes\Chromium*";
+
+            DeleteRegistryFolder(RegistryHive.CurrentUser, baseKeyString);
+
+            // Does not work currently
         }
     }
 }

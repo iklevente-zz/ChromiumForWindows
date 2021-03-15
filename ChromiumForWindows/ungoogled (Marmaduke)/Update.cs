@@ -40,13 +40,13 @@ namespace ChromiumForWindows
                 Output.WriteLine("Deleted old Chromium folder.");
             }
 
-            //Get the unique GitHub release filename
-            GetFileVersion.GetVersionInfo();
-
             // Changing version info to the latest one:
             System.IO.File.WriteAllText(MainWindow.chromiumPath + "\\versioninfo.txt", MainWindow.latestVersion);
             Output.WriteLine("There is a new Chromium out there! Updating...");
             Output.WriteLine("Updating versioninfo.txt is done! The program will update Chromium to the latest version now!");
+
+            //Get the unique GitHub release filename
+            GetFileVersion.GetVersionInfo();
 
             // Downloading and updating Chromium to the latest version:
             using (WebClient webClient = new WebClient())
@@ -68,13 +68,13 @@ namespace ChromiumForWindows
                 pro.Arguments = string.Format("x \"{0}\" -y -o\"{1}\"", sourceArchive, destination);
                 Process x = Process.Start(pro);
                 x.WaitForExit();
+                Output.WriteLine("Installation is done.");
             }
             catch (System.Exception)
             {
                 //handle error
                 MessageBox.Show("There was an error while extracting the latest Chromium.");
             }
-            Output.WriteLine("Installation is done.");
         }
     }
 }
