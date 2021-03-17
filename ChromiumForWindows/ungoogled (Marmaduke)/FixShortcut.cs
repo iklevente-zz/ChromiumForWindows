@@ -8,13 +8,12 @@ using System.Text.RegularExpressions;
 
 namespace ChromiumForWindows
 {
-    class FixShortcutAndRegedit
+    class FixShortcut
     {
-        public static void MakeShortcutsAndDelReg()
+        public static void MakeShortcuts()
         {
             DesktopShortcut();
             StartMenuShortcut();
-            DelReg();
         }
 
         // Delete Chromium desktop shortcut and replace with the updater's shortcut:
@@ -32,7 +31,7 @@ namespace ChromiumForWindows
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
             shortcut.Description = "Open Chromium";
             shortcut.TargetPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ChromiumLauncher.exe";
-            shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64\\chrome.exe";
+            shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ungoogled-chromium-Win64\\chrome.exe";
             shortcut.Save();
             Output.WriteLine("Desktop Shortcut done");
         }
@@ -60,30 +59,10 @@ namespace ChromiumForWindows
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
 
             shortcut.Description = "Open Chromium";
-            shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64\\chrome.exe";
+            shortcut.IconLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\ungoogled-chromium-Win64\\chrome.exe";
             shortcut.TargetPath = pathToExe;
             shortcut.Save();
             Output.WriteLine("Start Menu Shortcut done");
-        }
-
-        public static void DeleteRegistryFolder(RegistryHive registryHive, string fullPathKeyToDelete)
-        {
-
-            using (var baseKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64))
-            {
-                baseKey.DeleteSubKeyTree(fullPathKeyToDelete);
-            }
-        }
-
-        static void DelReg()
-        {
-            Output.WriteLine("Deleting Chromium registry values in order to fix the default application problem...");
-
-            var baseKeyString = $@"SOFTWARE\Classes\Chromium*";
-
-            DeleteRegistryFolder(RegistryHive.CurrentUser, baseKeyString);
-
-            // Does not work currently
         }
     }
 }

@@ -129,7 +129,7 @@ namespace ChromiumForWindows
             await Task.Run(() => Update.StartUpdate());
             Output.WriteLine("Update completed.");
             Output.WriteLine("Waiting for Shortcuts to be created.");
-            await Task.Run(() => FixShortcutAndRegedit.MakeShortcutsAndDelReg());
+            await Task.Run(() => FixShortcut.MakeShortcuts());
             Output.WriteLine("Shortcuts are done!");
             StartChromium();
             CloseUpdater();
@@ -137,13 +137,9 @@ namespace ChromiumForWindows
 
         public static void StartChromium()
         {
-            //Get the unique GitHub release folder name to be able to get te path for chrome.exe
-            GetFileVersion.GetVersionInfo();
+            System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\ungoogled-chromium-Win64\\chrome.exe"));
 
-            string ungoogledPath = chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64";
-            System.Diagnostics.Process.Start(System.IO.Path.Combine(ungoogledPath + "\\chrome.exe"));
-
-            Output.WriteLine("Starting Chromium... Found location:" + System.IO.Path.Combine(ungoogledPath + "\\chrome.exe"));
+            Output.WriteLine("Starting Chromium... Found in this location:" + System.IO.Path.Combine(chromiumPath + "\\ungoogled-chromium-Win64\\chrome.exe"));
         }
 
         static void CloseUpdater()

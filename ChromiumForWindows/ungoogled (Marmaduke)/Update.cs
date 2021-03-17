@@ -33,10 +33,15 @@ namespace ChromiumForWindows
             }
 
             // Deletes old Chromium directory if exists: (To not leave multiple Chromium installations) // Would be cool to make it easier
-            GetFileVersion.GetOldVersionInfo();
+            /*GetFileVersion.GetOldVersionInfo();
             if (Directory.Exists(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64"))
             {
                 System.IO.Directory.Delete(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64", true);
+                Output.WriteLine("Deleted old Chromium folder.");
+            }*/
+            if (Directory.Exists(MainWindow.chromiumPath + "\\ungoogled-chromium-Win64"))
+            {
+                Directory.Delete(MainWindow.chromiumPath + "\\ungoogled-chromium-Win64", true);
                 Output.WriteLine("Deleted old Chromium folder.");
             }
 
@@ -74,6 +79,14 @@ namespace ChromiumForWindows
             {
                 //handle error
                 MessageBox.Show("There was an error while extracting the latest Chromium.");
+            }
+
+            //Rename the extracted directory to fix regex Default browser setting
+            GetFileVersion.GetVersionInfo();
+            if (Directory.Exists(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64"))
+            {
+                Directory.Move(MainWindow.chromiumPath + "\\ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64", MainWindow.chromiumPath + "\\ungoogled-chromium-Win64");
+                Output.WriteLine("Renamed ungoogled-chromium-" + GetFileVersion.finalregexresult + "-1_Win64 to ungoogled-chromium-Win64");
             }
         }
     }
