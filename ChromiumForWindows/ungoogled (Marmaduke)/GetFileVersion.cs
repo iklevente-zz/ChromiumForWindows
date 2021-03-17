@@ -48,8 +48,9 @@ namespace ChromiumForWindows
 
         public static void GetOldVersionInfo()
         {
-            //This saves the old version info in order to delete the old version in Update.cs, if a new release is out
-            //Get the unique GitHub release filename
+            // This saves the old version info, now it is not needed at all! (in order to delete the old version in Update.cs previously, if a new release is out)
+            // Left it in the code, so I can be used if needed in the future.
+            // Get the unique GitHub release filename
             string regexpattern = @"v(.*?)-";
             Regex rg = new Regex(regexpattern);
 
