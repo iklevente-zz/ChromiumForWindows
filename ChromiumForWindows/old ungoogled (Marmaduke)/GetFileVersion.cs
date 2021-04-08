@@ -1,4 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ChromiumForWindows
 {
@@ -56,7 +59,7 @@ namespace ChromiumForWindows
             {
                 string regexresult = matched[count].Value.ToString();
                 Output.WriteLine(regexresult + " is the the found modification in old Chromium folder's name.");
-
+                
                 Output.WriteLine("That v and - are causing a mess, let's get rid of them.");
                 finalregexresult = regexresult.Trim('v', '-');
                 Output.WriteLine("The final regexed version result is: " + finalregexresult + " Deleting the folder, wich contains this...");

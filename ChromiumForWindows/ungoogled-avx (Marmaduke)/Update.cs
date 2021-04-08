@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
 using System.Net;
 using System.Diagnostics;
 
@@ -20,12 +23,11 @@ namespace ChromiumForWindows
                 }
             }
 
-
             // Deletes old installer if exists:
-            if (File.Exists(MainWindow.chromiumPath + "\\ungoogled_mini_installer.exe"))
+            if (File.Exists(MainWindow.chromiumPath + "\\ungoogled_mini_installer_avx.exe"))
             {
-                System.IO.File.Delete(MainWindow.chromiumPath + "\\ungoogled_mini_installer.exe");
-                Output.WriteLine("Deleted old Chromium installer (ungoogled_mini_installer.exe).");
+                System.IO.File.Delete(MainWindow.chromiumPath + "\\ungoogled_mini_installer_avx.exe");
+                Output.WriteLine("Deleted old Chromium installer (ungoogled_mini_installer_avx.exe).");
             }
 
             // Changing version info to the latest one:
@@ -33,18 +35,15 @@ namespace ChromiumForWindows
             Output.WriteLine("There is a new Chromium out there! Updating...");
             Output.WriteLine("Updating versioninfo.txt is done! The program will update Chromium to the latest version now!");
 
-            // Getting version info from GitHub
-            GetFileVersion.GetVersionInfo();
-
             // Downloading and updating Chromium to the latest version:
             using (WebClient webClient = new WebClient())
             {
-                webClient.DownloadFile("https://github.com/macchrome/winchrome/releases/latest/download/" + GetFileVersion.finalregexresult + "_ungoogled_mini_installer.exe", MainWindow.chromiumPath + "\\ungoogled_mini_installer.exe"); ;
+                webClient.DownloadFile("https://github.com/macchrome/winchrome/releases/latest/download/mini_installer_avx.exe", MainWindow.chromiumPath + "\\ungoogled_mini_installer_avx.exe");
             }
-            Output.WriteLine("Latest Chromium installer (ungoogled_mini_installer.exe) downloaded");
+            Output.WriteLine("Latest Chromium installer (ungoogled_mini_installer_avx.exe) downloaded");
 
             Output.WriteLine("Installing...");
-            var miniinstallersync = System.Diagnostics.Process.Start(System.IO.Path.Combine(MainWindow.chromiumPath + "\\ungoogled_mini_installer.exe"));
+            var miniinstallersync = System.Diagnostics.Process.Start(System.IO.Path.Combine(MainWindow.chromiumPath + "\\ungoogled_mini_installer_avx.exe"));
             miniinstallersync.WaitForExit();
             Output.WriteLine("Installation is done.");
         }

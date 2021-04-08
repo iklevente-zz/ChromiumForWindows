@@ -1,9 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using System.Net;
 using System.IO;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace ChromiumForWindows
 {
@@ -42,7 +54,7 @@ namespace ChromiumForWindows
 
                 // Try to create the directory.
                 DirectoryInfo di = Directory.CreateDirectory(chromiumPath);
-                Output.WriteLine("Chromium directory was created successfully at " + Directory.GetCreationTime(chromiumPath));
+                Output.WriteLine("Chromium directory was created successfully at: " + Directory.GetCreationTime(chromiumPath));
             }
             catch (Exception e)
             {
@@ -53,8 +65,8 @@ namespace ChromiumForWindows
         }
 
         // Checks current version with the newest version: 
-        public static string localVersion = "";
-        public static string latestVersion = "";
+        public static string localVersion = null;
+        public static string latestVersion = null;
         void CheckVersion()
         {
             if (System.IO.File.Exists(chromiumPath + "\\versioninfo.txt"))
@@ -72,7 +84,7 @@ namespace ChromiumForWindows
             Output.WriteLine(localVersion + " is the current local version.");
 
 
-            // Checks the version from the website. It will use the link below, which will redirect to the latest version. string latestVersion will be equal to the redirected URL.
+            // Checks the version from the GitHub Release website. It will use the link below, which will redirect to the latest version. string latestVersion will be equal to the redirected URL.
             WebRequest request = WebRequest.Create("https://github.com/macchrome/winchrome/releases/latest/");
             request.Method = "HEAD"; // Use a HEAD request because we don't need to download the response body
             try
@@ -86,13 +98,13 @@ namespace ChromiumForWindows
             {
                 using (WebResponse response = e.Response)
                 {
-                    latestVersion = "No response from download server. Check your internet connection!";
+                    latestVersion = "No response!";
                     MessageBox.Show("No response from download server. Check your internet connection!");
                 }
             }
 
             // Here the program decides, if it needs to be updated
-            if (latestVersion == "No response from download server")
+            if (latestVersion == "No response!")
             {
                 StartChromium();
                 CloseUpdater();
@@ -102,12 +114,12 @@ namespace ChromiumForWindows
             {
                 StartAndWaitForUpdate();
             }
-            else
+            else if (localVersion == latestVersion)
             {
                 Output.WriteLine("Local version is the same as latest version!");
-                Output.WriteLine("Exiting!");
                 StartChromium();
                 CloseUpdater();
+                return;
             }
         }
 
@@ -125,8 +137,9 @@ namespace ChromiumForWindows
 
         public static void StartChromium()
         {
-            Output.WriteLine("Starting Chromium...");
-            System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
+            System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\ungoogled-chromium-Win64\\chrome.exe"));
+
+            Output.WriteLine("Starting Chromium... Found in this location:" + System.IO.Path.Combine(chromiumPath + "\\ungoogled-chromium-Win64\\chrome.exe"));
         }
 
         static void CloseUpdater()
