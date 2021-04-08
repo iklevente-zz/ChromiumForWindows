@@ -6,6 +6,7 @@ The ungoogled version is based on [Marmaduke's Chromium builds](https://github.c
 Widevine, and all-codecs+ are enabled. Sync disabled.
 
 **Update:** Marmaduke switched back to the original release name, so Ungoogled installer was fixed/updated in 1.5.3 release on **22/09/2020**.
+
 **Update 2:** Ungoodled Chromium (Marmaduke Release) now **contains** the default browser setting! This broke the updater so please download the 1.5.4 release and follow the instructions to fix the issue, since it was fixed on **17/03/2021**!
 
 **Important: You will need .NET Core Runtime to run the program. Download it from [here](https://dotnet.microsoft.com/download).**
