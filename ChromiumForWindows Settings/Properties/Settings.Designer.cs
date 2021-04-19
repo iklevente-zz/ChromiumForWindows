@@ -22,5 +22,17 @@ namespace ChromiumForWindows_Settings.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/iklevente/ChromiumForWindows/releases/tag/2.0")]
+        public string localVersion {
+            get {
+                return ((string)(this["localVersion"]));
+            }
+            set {
+                this["localVersion"] = value;
+            }
+        }
     }
 }

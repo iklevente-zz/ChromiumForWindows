@@ -3,33 +3,24 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>ChromiumForWindows_Settings</RootNamespace>
     <UseWPF>true</UseWPF>
-    <Platforms>AnyCPU;x64;x86</Platforms>
-    <ApplicationIcon>chromiumicon.ico</ApplicationIcon>
-    <Authors>iklevente</Authors>
-    <Copyright>2020 MIT License iklevente</Copyright>
-    <RepositoryUrl>https://github.com/iklevente/ChromiumForWindows</RepositoryUrl>
-    <RepositoryType>Open source GitHub repository</RepositoryType>
-    <PackageIcon>Chromium_Material_Icon.png</PackageIcon>
-    <PackageProjectUrl>https://github.com/iklevente/ChromiumForWindows</PackageProjectUrl>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <Description>ChromiumForWindows Settings interface</Description>
+    <AssemblyName>ChromiumForWindows Settings</AssemblyName>
+    <RootNamespace>ChromiumForWindows_Settings</RootNamespace>
+    <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\ChromiumForWindows\stable (Hibbiki)\Images\Chromium_Material_Icon.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="C:\Users\klevi\OneDrive\Desktop\Saved\LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <None Remove="logo.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="logo.png" />
   </ItemGroup>
 
   <ItemGroup>

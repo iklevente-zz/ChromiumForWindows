@@ -1,7 +1,7 @@
-﻿<Application x:Class="ChromiumForWindows_Settings.App"
+﻿<Application x:Class="ChromiumForWindows_Updater.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ChromiumForWindows_Settings"
+             xmlns:local="clr-namespace:ChromiumForWindows_Updater"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
