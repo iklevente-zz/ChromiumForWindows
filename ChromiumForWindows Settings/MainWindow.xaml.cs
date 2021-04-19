@@ -2,8 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.IO;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using System.Windows.Media;
 using System.Diagnostics;
 using ChromiumForWindows_Settings.Properties;
@@ -36,17 +34,14 @@ namespace ChromiumForWindows_Settings
                 // Determine whether the directory exists.
                 if (Directory.Exists(chromiumPath))
                 {
-                    Output.WriteLine("Chromium directory exists.");
                     return;
                 }
 
                 // Try to create the directory.
                 DirectoryInfo di = Directory.CreateDirectory(chromiumPath);
-                Output.WriteLine("Chromium directory was created successfully at " + Directory.GetCreationTime(chromiumPath));
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Output.WriteLine("The process failed: " + e.ToString());
                 System.Windows.Application.Current.Shutdown();
             }
             finally { }
@@ -54,11 +49,7 @@ namespace ChromiumForWindows_Settings
 
         private void CheckBuild()
         {
-            if (System.IO.File.Exists(chromiumPath + "\\settings.json"))
-            {
-                Output.WriteLine("settings.json is already exists!");
-            }
-            else
+            if (!System.IO.File.Exists(chromiumPath + "\\settings.json"))
             {
                 // If there is no versioninfo.txt file, create one:
                 AppConfig.SaveDefaultSettings();
@@ -103,7 +94,6 @@ namespace ChromiumForWindows_Settings
                 {
                     unsavedChromiumBuild = "Hibbiki";
                     AppConfig.SaveSettings();
-                    Output.WriteLine("Saved choosen build.");
 
                     // UI Changes for selected build
                     HibbikiUI();
@@ -119,7 +109,6 @@ namespace ChromiumForWindows_Settings
                 {
                     unsavedChromiumBuild = "Marmaduke";
                     AppConfig.SaveSettings();
-                    Output.WriteLine("Saved choosen build.");
 
                     // UI Changes for selected build
                     MarmadukeUI();
@@ -162,10 +151,7 @@ namespace ChromiumForWindows_Settings
             {
                 updateAvalibleLink.Visibility = Visibility.Visible;
             }
-            else
-            {
-                Output.WriteLine("Local version is the same as latest version!");
-            }
+            // Else Local version is the same as latest version!
         }
 
         // If there is a new update and hyperlink is visible...
@@ -213,6 +199,13 @@ namespace ChromiumForWindows_Settings
 
             descriptionText.Visibility = Visibility.Visible;
             descriptionText.Text = "Marmaduke's Chromium builds. Ungoogled, plus has more codecs than usual. https://github.com/macchrome/winchrome";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var updater = System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\ChromiumForWindows Updater.exe"));
+            updater.WaitForExit();
+            System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
         }
 
         private void uptodateChip_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
@@ -354,6 +347,11 @@ namespace ChromiumForWindows_Settings
                 descriptionText.Text = "Chromium for a recent computer (higher than the year 2011) having a processor with the support of AVX instructions.";
             }
             descriptionText.Visibility = Visibility.Visible;
+        }
+
+        private void avxChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            descriptionText.Visibility = Visibility.Hidden;
         }
     }
 }

@@ -35,17 +35,14 @@ namespace ChromiumForWindows_Updater
                 // Determine whether the directory exists.
                 if (Directory.Exists(chromiumPath))
                 {
-                    Output.WriteLine("Chromium directory exists.");
                     return;
                 }
 
                 // Try to create the directory.
                 DirectoryInfo di = Directory.CreateDirectory(chromiumPath);
-                Output.WriteLine("Chromium directory was created successfully at " + Directory.GetCreationTime(chromiumPath));
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Output.WriteLine("The process failed: " + e.ToString());
                 System.Windows.Application.Current.Shutdown();
             }
             finally { }
@@ -53,11 +50,7 @@ namespace ChromiumForWindows_Updater
 
         private void CheckBuild()
         {
-            if (System.IO.File.Exists(chromiumPath + "\\settings.json"))
-            {
-                Output.WriteLine("settings.json is already exists!");
-            }
-            else
+            if (!System.IO.File.Exists(chromiumPath + "\\settings.json"))
             {
                 // If there is no versioninfo.txt file, create one:
                 AppConfig.SaveDefaultSettings();
@@ -73,11 +66,7 @@ namespace ChromiumForWindows_Updater
         public static string webRequestUrl = null;
         void CheckVersion()
         {
-            if (System.IO.File.Exists(chromiumPath + "\\versioninfo.txt"))
-            {
-                Output.WriteLine("versioninfo.txt is already exists!");
-            }
-            else
+            if (!System.IO.File.Exists(chromiumPath + "\\versioninfo.txt"))
             {
                 // If there is no versioninfo.txt file, create one:
                 System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\versioninfo.txt", "NULL");
@@ -85,7 +74,6 @@ namespace ChromiumForWindows_Updater
 
             // Checks the local version
             localVersion = System.IO.File.ReadAllText(chromiumPath + "\\versioninfo.txt");
-            Output.WriteLine(localVersion + " is the current local version.");
 
             // Decides where to create a web request
             if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki\""))
@@ -135,17 +123,13 @@ namespace ChromiumForWindows_Updater
             }
             else
             {
-                Output.WriteLine("Local version is the same as latest version!");
-                Output.WriteLine("Exiting!");
                 CloseUpdater();
             }
         }
 
         private async void StartAndWaitForUpdate()
         {
-            Output.WriteLine("Waiting for the update to be completed.");
             await Task.Run(() => Update.StartUpdate());
-            Output.WriteLine("Update completed.");
             CloseUpdater();
         }
 

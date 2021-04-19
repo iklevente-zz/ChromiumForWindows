@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using System;
 
 namespace ChromiumForWindows_Updater
 {
@@ -17,11 +18,11 @@ namespace ChromiumForWindows_Updater
             for (int count = 0; count < matched.Count; count++)
             {
                 string regexresult = matched[count].Value.ToString();
-                Output.WriteLine(regexresult + " is the the found modification in the downloadable, released GitHub file name.");
+                Console.WriteLine(regexresult + " is the the found modification in the downloadable, released GitHub file name.");
 
-                Output.WriteLine("That v and - are causing a mess, let's get rid of them.");
+                Console.WriteLine("That v and - are causing a mess, let's get rid of them.");
                 finalregexresult = regexresult.Trim('v', '-');
-                Output.WriteLine("The final regexed version result is: " + finalregexresult + " Adding it to the download file function...");
+                Console.WriteLine("The final regexed version result is: " + finalregexresult + " Adding it to the download file function...");
             }
         }
     }

@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 
 namespace ChromiumForWindows_Updater
 {
@@ -14,8 +12,6 @@ namespace ChromiumForWindows_Updater
 
         // Describe all datas that we need to store
         public string chromiumBuild { get; set; }
-        public string appVersion { get; set; }
-        public string lastUpdateTime { get; set; }
 
         // Write default settings
         // This only happens if the settings.json file is missing
@@ -23,7 +19,6 @@ namespace ChromiumForWindows_Updater
         {
             var defaultSettings = new AppConfig();
             defaultSettings.chromiumBuild = "Hibbiki";
-            defaultSettings.appVersion = "2.0";
 
             // Serialize it
             var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(defaultSettings, Newtonsoft.Json.Formatting.Indented);
