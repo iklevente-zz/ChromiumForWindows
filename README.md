@@ -13,6 +13,7 @@ Every time you start your computer, it checks for a newer version and if needed 
 
 Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases/latest) page for the latest Installer.
 
+
 ## Material Design GUI:
 ![](https://raw.githubusercontent.com/iklevente/ChromiumForWindows/master/Shared%20Resources/Videos/CFWSettings.gif)
 
@@ -22,16 +23,21 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases/la
 ## Plans:
 - Keep the project working as expected, if something would go wrong.
 - Material UI Installer
- 
+
+
 ## Big thanks to:
 - woolyss https://chromium.woolyss.com/ +rep 🍺
 - Hibbiki https://github.com/Hibbiki/chromium-win64 +rep 🍺
 - Marmaduke https://github.com/macchrome/winchrome/ +rep 🍺
 - mikey-t https://gist.github.com/mikey-t +rep 🍺
- 
+
+
 ## Buy me a coffee ☕:
 Ko-fi: https://ko-fi.com/iklevente
+
 BTC: 3BLDTSX8eiM7QmxQZ3fZhdtkJFxjK5tThs
+
 XMR: 897oVNnAbFuGmDBEDRkfY762CzMXk6gGxPaQXQaJj6WW5pw6p78w3Zk9LKEqLoy4FyjoNzPZ4xPD2UvgBVt9Nva9LjStfNM
+
 
 *This project is licensed under the MIT License. Made by Ilyó Kovács Levente and the contributors.*
