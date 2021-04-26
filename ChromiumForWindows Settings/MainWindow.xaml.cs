@@ -189,7 +189,7 @@ namespace ChromiumForWindows_Settings
             allcodecsChip.Width = 90; // default 83
             allcodecsChip.Content = "all-codecs+";
 
-            avxChip.Width = 55; // default 50
+            avxChip.Width = 50; // default 50
             avxChip.Content = "AVX";
 
             var bc = new BrushConverter();
@@ -201,7 +201,7 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "Marmaduke's Chromium builds. Ungoogled, plus has more codecs than usual. https://github.com/macchrome/winchrome";
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void applyButton_Click(object sender, RoutedEventArgs e)
         {
             var updater = System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\ChromiumForWindows Updater.exe"));
             updater.WaitForExit();

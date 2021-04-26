@@ -58,9 +58,9 @@
         <TextBlock x:Name="noResponseText"
             Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="No response from download server. Check your internet connection!" FontSize="12" HorizontalAlignment="Center" Width="368" Visibility="Hidden" FontWeight="Normal" FontStyle="Normal" Margin="0,410,0,0" TextTrimming="None" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
 
-        <Button
+        <Button x:Name="applyButton"
             Style="{StaticResource MaterialDesignRaisedButton}"
             ToolTip="Resource name: MaterialDesignRaisedButton"
-            Content="Start Chromium" Margin="0,348,156,0" Height="32" VerticalAlignment="Top" Click="Button_Click" HorizontalAlignment="Right" Width="135" />
+            Content="Start Chromium" Margin="0,348,156,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135" Click="applyButton_Click" />
     </Grid>
 </Window>
