@@ -11,7 +11,7 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases/la
 
 
 ## Material Design GUI:
-
+![](https://raw.githubusercontent.com/iklevente/ChromiumForWindows/master/Shared%20Resources/Videos/CFWSettingsUI.gif)
 
 ![](https://raw.githubusercontent.com/iklevente/ChromiumForWindows/master/Shared%20Resources/Videos/CFWUpdater.gif)
 
