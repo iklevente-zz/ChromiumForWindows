@@ -4,7 +4,7 @@
 #define MyAppName "ChromiumForWindows"
 #define Chromium "Chromium"
 #define ChromiumSettings "Chromium Settings"
-#define MyAppVersion "2.0"
+#define MyAppVersion "2.1"
 #define MyAppPublisher "iklevente"
 #define MyAppURL "https://github.com/iklevente/ChromiumForWindows"
 #define MyAppExeName "ChromiumForWindows Updater.exe"
