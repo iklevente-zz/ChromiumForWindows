@@ -1,9 +1,5 @@
 # Chromium For Windows
-This project can install the latest Chromium to your PC and it keeps the browser up to date. It is based on [Hibbiki's Chromium builds](https://github.com/Hibbiki/chromium-win64).
-Widevine, synchronisation and all-codecs are enabled.
-
-The ungoogled version is based on [Marmaduke's Chromium builds](https://github.com/macchrome/winchrome/).
-Widevine, and all-codecs+ are enabled. Sync disabled.
+This project can install the latest Chromium to your PC and it keeps the browser up to date. The build releases are from https://chromium.woolyss.com/
 
 **Important: You will need .NET Core Runtime to run the program. Download it from [here](https://dotnet.microsoft.com/download).**
 
@@ -15,7 +11,7 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases/la
 
 
 ## Material Design GUI:
-![](https://raw.githubusercontent.com/iklevente/ChromiumForWindows/master/Shared%20Resources/Videos/CFWSettings.gif)
+
 
 ![](https://raw.githubusercontent.com/iklevente/ChromiumForWindows/master/Shared%20Resources/Videos/CFWUpdater.gif)
 
