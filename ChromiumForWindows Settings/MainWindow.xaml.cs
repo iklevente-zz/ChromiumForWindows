@@ -190,7 +190,7 @@ namespace ChromiumForWindows_Settings
             allcodecsChip.Content = "all-codecs+";
 
             avxChip.Width = 55; // default 50
-            avxChip.Content = "AVX2";
+            avxChip.Content = "AVX";
 
             var bc = new BrushConverter();
             syncChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // default #FFE8E8E8 grey
