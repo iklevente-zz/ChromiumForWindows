@@ -38,21 +38,23 @@
             <ComboBoxItem>ungoogled (Marmaduke)</ComboBoxItem>
         </ComboBox>
 
-        <materialDesign:Chip x:Name="uptodateChip" Margin="0,136,317,0" Content="up-to-date" HorizontalAlignment="Right" Width="83" Height="32" VerticalAlignment="Top" Background="#FF76F399" MouseEnter="uptodateChip_MouseEnter" MouseLeave="uptodateChip_MouseLeave"/>
-        <materialDesign:Chip x:Name="allcodecsChip" Margin="0,136,76,0" Content="all-codecs" Width="90" Height="32" VerticalAlignment="Top" MouseEnter="allcodecsChip_MouseEnter" MouseLeave="allcodecsChip_MouseLeave" HorizontalAlignment="Right" Background="#FF76F399"/>
-        <materialDesign:Chip x:Name="widevineChip" Margin="0,136,171,0" Content="widevine" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Top" MouseEnter="widevineChip_MouseEnter" MouseLeave="widevineChip_MouseLeave" Background="#FF76F399"/>
-        <materialDesign:Chip x:Name="syncChip" Margin="0,173,349,0" Content="sync" HorizontalAlignment="Right" Width="51" Height="32" VerticalAlignment="Top" MouseEnter="syncChip_MouseEnter" MouseLeave="syncChip_MouseLeave" Background="#FFE8E8E8"/>
-        <materialDesign:Chip x:Name="win64Chip" Margin="0,173,194,0" Content="win64" Height="32" VerticalAlignment="Top" Width="59" Background="#FF76F399" HorizontalAlignment="Right" MouseEnter="win64Chip_MouseEnter" MouseLeave="win64Chip_MouseLeave"/>
-        <materialDesign:Chip x:Name="ungoogledChip" Margin="0,173,258,0" Content="ungoogled" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Width="86" MouseEnter="ungoogledChip_MouseEnter" MouseLeave="ungoogledChip_MouseLeave" Background="#FFE8E8E8"/>
-        <materialDesign:Chip x:Name="stableChip" Margin="0,136,251,0" Content="stable" Width="61" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" MouseEnter="stableChip_MouseEnter" MouseLeave="stableChip_MouseLeave" Background="#FF76F399"/>
-        <materialDesign:Chip x:Name="modifiedChip" Margin="0,173,113,0" Content="modified" Width="76" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" MouseEnter="modifiedChip_MouseEnter" MouseLeave="modifiedChip_MouseLeave" Background="#FFE8E8E8"/>
-        <materialDesign:Chip x:Name="avxChip" Margin="0,210,98,0" Content="AVX" Width="50" Height="32" VerticalAlignment="Top" MouseEnter="avxChip_MouseEnter" HorizontalAlignment="Right" Background="#FFE8E8E8" MouseLeave="avxChip_MouseLeave"/>
-        <materialDesign:Chip x:Name="fmaChip" Margin="0,210,158,0" Content="FMA" Width="51" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" MouseEnter="fmaChip_MouseEnter" MouseLeave="fmaChip_MouseLeave" Background="#FFE8E8E8"/>
-        <materialDesign:Chip x:Name="privacyorientedChip" Margin="0,210,283,0" Content="privacy oriented" Width="117" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" MouseEnter="privacyorientedChip_MouseEnter" MouseLeave="privacyorientedChip_MouseLeave" Background="#FFE8E8E8"/>
-        <materialDesign:Chip x:Name="trustedChip" Margin="0,210,214,0" Content="trusted" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Width="64" MouseEnter="trustedChip_MouseEnter" MouseLeave="trustedChip_MouseLeave" Background="#FF76F399"/>
+        <Grid Margin="41,130,0,0" HorizontalAlignment="Left" Width="409" Height="118" VerticalAlignment="Top">
+            <materialDesign:Chip x:Name="uptodateChip" Margin="9,0,317,80" Content="up-to-date" HorizontalAlignment="Stretch" Height="32" VerticalAlignment="Bottom" Background="#FF76F399" MouseEnter="uptodateChip_MouseEnter" MouseLeave="uptodateChip_MouseLeave"/>
+            <materialDesign:Chip x:Name="allcodecsChip" Margin="243,0,76,80" Content="all-codecs" Height="32" VerticalAlignment="Bottom" MouseEnter="allcodecsChip_MouseEnter" MouseLeave="allcodecsChip_MouseLeave" HorizontalAlignment="Stretch" Background="#FF76F399"/>
+            <materialDesign:Chip x:Name="widevineChip" Margin="163,0,171,80" Content="widevine" HorizontalAlignment="Stretch" Height="32" VerticalAlignment="Bottom" MouseEnter="widevineChip_MouseEnter" MouseLeave="widevineChip_MouseLeave" Background="#FF76F399"/>
+            <materialDesign:Chip x:Name="syncChip" Margin="9,0,349,43" Content="sync" HorizontalAlignment="Stretch" Height="32" VerticalAlignment="Bottom" MouseEnter="syncChip_MouseEnter" MouseLeave="syncChip_MouseLeave" Background="#FFE8E8E8"/>
+            <materialDesign:Chip x:Name="win64Chip" Margin="156,0,194,43" Content="win64" Height="32" VerticalAlignment="Bottom" Background="#FF76F399" HorizontalAlignment="Stretch" MouseEnter="win64Chip_MouseEnter" MouseLeave="win64Chip_MouseLeave"/>
+            <materialDesign:Chip x:Name="ungoogledChip" Margin="65,0,258,43" Content="ungoogled" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" MouseEnter="ungoogledChip_MouseEnter" MouseLeave="ungoogledChip_MouseLeave" Background="#FFE8E8E8"/>
+            <materialDesign:Chip x:Name="stableChip" Margin="97,0,251,80" Content="stable" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" MouseEnter="stableChip_MouseEnter" MouseLeave="stableChip_MouseLeave" Background="#FF76F399"/>
+            <materialDesign:Chip x:Name="modifiedChip" Margin="220,0,113,43" Content="modified" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" MouseEnter="modifiedChip_MouseEnter" MouseLeave="modifiedChip_MouseLeave" Background="#FFE8E8E8"/>
+            <materialDesign:Chip x:Name="avxChip" Margin="261,0,98,6" Content="AVX" Height="32" VerticalAlignment="Bottom" MouseEnter="avxChip_MouseEnter" HorizontalAlignment="Stretch" Background="#FFE8E8E8" MouseLeave="avxChip_MouseLeave"/>
+            <materialDesign:Chip x:Name="fmaChip" Margin="200,0,158,6" Content="FMA" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" MouseEnter="fmaChip_MouseEnter" MouseLeave="fmaChip_MouseLeave" Background="#FFE8E8E8"/>
+            <materialDesign:Chip x:Name="privacyorientedChip" Margin="9,0,283,6" Content="privacy oriented" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" MouseEnter="privacyorientedChip_MouseEnter" MouseLeave="privacyorientedChip_MouseLeave" Background="#FFE8E8E8"/>
+            <materialDesign:Chip x:Name="trustedChip" Margin="131,0,214,6" Content="trusted" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" MouseEnter="trustedChip_MouseEnter" MouseLeave="trustedChip_MouseLeave" Background="#FF76F399"/>
+        </Grid>
 
         <TextBlock x:Name="descriptionText"
-            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Detailed description about the chips." FontSize="12" Height="75" VerticalAlignment="Top" HorizontalAlignment="Center" Width="350" Visibility="Visible" FontWeight="Normal" FontStyle="Italic" Margin="0,253,0,0" TextTrimming="None" TextWrapping="Wrap"/>
+            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Detailed description about the chips." FontSize="12" Height="75" VerticalAlignment="Top" Visibility="Visible" FontWeight="Normal" FontStyle="Italic" Margin="50,253,50,0" TextTrimming="None" TextWrapping="Wrap"/>
         <TextBlock x:Name="updateAvalibleLink"
             Style="{StaticResource MaterialDesignTextBlock}" Margin="0,0,10,10" FontSize="12" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="236" Visibility="Hidden"><Hyperlink Click="Hyperlink_Click">There is a new update avalible to download!</Hyperlink></TextBlock>
         <TextBlock x:Name="noResponseText"
@@ -60,7 +62,10 @@
 
         <Button x:Name="applyButton"
             Style="{StaticResource MaterialDesignRaisedButton}"
-            ToolTip="Resource name: MaterialDesignRaisedButton"
-            Content="Start Chromium" Margin="0,348,156,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135" Click="applyButton_Click" />
+            Content="Apply" Margin="0,362,120,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Width="66" Click="applyButton_Click" />
+
+        <Button x:Name="startButton"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            Content="Start Chromium" Margin="101,362,0,0" Height="32" VerticalAlignment="Top" Click="startButton_Click" HorizontalAlignment="Left" Width="136" />
     </Grid>
 </Window>

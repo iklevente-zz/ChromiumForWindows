@@ -165,7 +165,9 @@ namespace ChromiumForWindows_Settings
             Settings.Default.Save();
         }
 
-        // Trash UI event handle
+
+        // UI event handle
+
         public void HibbikiUI()
         {
             allcodecsChip.Width = 83; // default 83
@@ -204,9 +206,17 @@ namespace ChromiumForWindows_Settings
         private void applyButton_Click(object sender, RoutedEventArgs e)
         {
             var updater = System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\ChromiumForWindows Updater.exe"));
+            startButton.IsEnabled = false;
             updater.WaitForExit();
+            startButton.IsEnabled = true;
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
             System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
         }
+
+        // Mouse enter/mouse leave code for description text
 
         private void uptodateChip_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
