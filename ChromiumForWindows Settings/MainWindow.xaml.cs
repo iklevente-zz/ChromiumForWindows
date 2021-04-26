@@ -213,7 +213,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "This Chromium build is up-to-date. It means Chromium browser and Google Chrome are based on the same latest stable version and security updates of the Chromium source code.";
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void uptodateChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -224,7 +223,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "Chromium's version is the same as the stable release of Google Chrome. No need to worry about instability, bugs and random crashes.";
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void stableChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -235,7 +233,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "Chromium compiled with the enabled Widevine support. After install of this plugin by yourself (because this is not an open-source software), Chromium will be able to play DRM content (on Netflix, for example).";
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void widevineChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -253,7 +250,6 @@ namespace ChromiumForWindows_Settings
             }
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void allcodecsChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -264,7 +260,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "Chromium with defined Google API keys. So Google services (Chrome Sync...) work. You will be able to log in with your Google account and synchronize your data.";
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void syncChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -275,7 +270,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "Chromium without Google integration and enhanced privacy, based on the \"ungoogled - chromium\" project from Eloston.";
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void ungoogledChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -286,7 +280,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "Chromium for 64-bit Windows.";
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void win64Chip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -297,7 +290,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "Features compiler optimizations via build configuration modifications.";
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void modifiedChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -308,7 +300,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "A lightweight approach to removing Google web service dependency. https://github.com/Eloston/ungoogled-chromium";
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void privacyorientedChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -319,7 +310,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "This build is proven to be trusted, due to clear VirusTotal results and countless effort of building Chromium binaries for years from the creator.";
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void trustedChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -330,7 +320,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "Chromium for a recent computer (higher than the year 2012) having a processor with the support of FMA instructions.";
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void fmaChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
@@ -348,7 +337,6 @@ namespace ChromiumForWindows_Settings
             }
             descriptionText.Visibility = Visibility.Visible;
         }
-
         private void avxChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             descriptionText.Visibility = Visibility.Hidden;
