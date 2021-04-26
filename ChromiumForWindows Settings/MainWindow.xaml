@@ -61,9 +61,9 @@
         <TextBlock x:Name="noResponseText"
             Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="No response from download server. Check your internet connection!" FontSize="12" HorizontalAlignment="Center" Width="368" Visibility="Hidden" FontWeight="Normal" FontStyle="Normal" Margin="0,410,0,0" TextTrimming="None" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
         <TextBlock x:Name="notInstalledText"
-            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Chromium is not installed! Press Apply to try again!" FontSize="12" HorizontalAlignment="Center" Width="278" Visibility="Hidden" FontWeight="Normal" FontStyle="Normal" Margin="0,410,0,0" TextTrimming="None" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Chromium is not installed! Press Apply to install your choosen build." FontSize="12" HorizontalAlignment="Center" Width="368" Visibility="Hidden" FontWeight="Normal" FontStyle="Normal" Margin="0,410,0,0" TextTrimming="None" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
         <TextBlock x:Name="notUninstalledText"
-            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="You didn't uninstall Chromium! Press Apply to try again!" FontSize="12" HorizontalAlignment="Center" Width="298" Visibility="Hidden" FontWeight="Normal" FontStyle="Normal" Margin="0,410,0,0" TextTrimming="None" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="You didn't uninstall Chromium! Press Apply to try again." FontSize="12" HorizontalAlignment="Center" Width="298" Visibility="Hidden" FontWeight="Normal" FontStyle="Normal" Margin="0,410,0,0" TextTrimming="None" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
 
         <Button x:Name="applyButton"
             Style="{StaticResource MaterialDesignRaisedButton}"
