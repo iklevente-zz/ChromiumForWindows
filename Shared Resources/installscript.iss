@@ -70,3 +70,6 @@ Name: "{autodesktop}\{#ChromiumSettings}"; Filename: "{app}\{#CFWSettings}"; Tas
 [Run]
 Filename: "{app}\{#CFWSettings}"; Description: "{cm:LaunchProgram,{#StringChange(ChromiumSettings, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
+[UninstallDelete]
+Type: filesandordirs; Name: "{localappdata}\Chromium\versioninfo.txt"
+

@@ -23,48 +23,37 @@ namespace ChromiumForWindows_Updater
 
             // Lots of if statements because of multiple builds!
 
-            // Deletes old installer if exists:
-            // Hibbiki build
-            if (File.Exists(MainWindow.chromiumPath + "\\mini_installer.sync_Hibbiki.exe"))
-            {
-                System.IO.File.Delete(MainWindow.chromiumPath + "\\mini_installer.sync_Hibbiki.exe");
-            }
-            // Marmaduke build
-            if (File.Exists(MainWindow.chromiumPath + "\\ungoogled_mini_installer_Marmaduke.exe"))
-            {
-                System.IO.File.Delete(MainWindow.chromiumPath + "\\ungoogled_mini_installer_Marmaduke.exe");
-            }
+            // No need to delete old installer if exists because webClient.DownloadFile overwrites it.
 
             // Changing version info to the latest one:
             System.IO.File.WriteAllText(MainWindow.chromiumPath + "\\versioninfo.txt", MainWindow.latestVersion);
 
-            // Huge if statements because of multiple builds!
             // Downloading and updating Chromium to the latest version:
-            // iklevente build
-            // Hibbiki build
+
+            // Choosing file ending to download the proper, choosen release
+            string filename = null;
             if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki\""))
             {
-                using (WebClient webClient = new WebClient())
-                {
-                    webClient.DownloadFile(MainWindow.webRequestUrl + "download/mini_installer.sync.exe", MainWindow.chromiumPath + "\\mini_installer.sync_Hibbiki.exe");
-                }
-
-                // Installing
-                var miniinstallersync = System.Diagnostics.Process.Start(System.IO.Path.Combine(MainWindow.chromiumPath + "\\mini_installer.sync_Hibbiki.exe"));
-                miniinstallersync.WaitForExit();
+                filename = "download/mini_installer.sync.exe";
             }
-            // Marmaduke build
+            else if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki nosync\""))
+            {
+                filename = "download/mini_installer.nosync.exe";
+            }
             else if (AppConfig.content.Contains("\"chromiumBuild\": \"Marmaduke\""))
             {
-                using (WebClient webClient = new WebClient())
-                {
-                    webClient.DownloadFile(MainWindow.webRequestUrl + "download/" + GetFileVersion.finalregexresult + "_ungoogled_mini_installer.exe", MainWindow.chromiumPath + "\\ungoogled_mini_installer_Marmaduke.exe"); ;
-                }
-
-                // Installing
-                var miniinstallersync = System.Diagnostics.Process.Start(System.IO.Path.Combine(MainWindow.chromiumPath + "\\ungoogled_mini_installer_Marmaduke.exe"));
-                miniinstallersync.WaitForExit();
+                filename = "download/" + GetFileVersion.finalregexresult + "_ungoogled_mini_installer.exe"; // Already regexed in MainWindow.xaml.cs (GetFileVersion.GetVersionInfo();)
             }
+
+            // Downloading
+            using (WebClient webClient = new WebClient())
+            {
+                webClient.DownloadFile(MainWindow.webRequestUrl + filename, MainWindow.chromiumPath + "\\chromium_installer.exe");
+            }
+
+            // Installing
+            var installer = System.Diagnostics.Process.Start(System.IO.Path.Combine(MainWindow.chromiumPath + "\\chromium_installer.exe"));
+            installer.WaitForExit();
         }
     }
 }

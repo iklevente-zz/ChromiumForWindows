@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Net;
 using System.IO;
+using Microsoft.Win32;
 
 namespace ChromiumForWindows_Updater
 {
@@ -17,6 +18,7 @@ namespace ChromiumForWindows_Updater
         public MainWindow()
         {
             CheckChromiumDir();
+            CheckAutorun();
             CheckBuild();
             CheckVersion();
             InitializeComponent();
@@ -48,6 +50,29 @@ namespace ChromiumForWindows_Updater
             finally { }
         }
 
+        private void CheckAutorun()
+        {
+            // The path to the key where Windows looks for startup applications
+            RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            if (!IsStartupItem())
+                // Add the value in the registry so that the application runs at startup
+                rkApp.SetValue("Chromium Updater", chromiumPath + "\\ChromiumForWindows Updater.exe");
+        }
+        public static bool IsStartupItem()
+        {
+
+            // The path to the key where Windows looks for startup applications
+            RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            if (rkApp.GetValue("My app's name") == null)
+                // The value doesn't exist, the application is not set to run at startup
+                return false;
+            else
+                // The value exists, the application is set to run at startup
+                return true;
+        }
+
         private void CheckBuild()
         {
             if (!System.IO.File.Exists(chromiumPath + "\\settings.json"))
@@ -76,7 +101,7 @@ namespace ChromiumForWindows_Updater
             localVersion = System.IO.File.ReadAllText(chromiumPath + "\\versioninfo.txt");
 
             // Decides where to create a web request
-            if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki\""))
+            if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki")) // No need to add Hibbiki nosync here since both stable build and Hibbiki nosync build can be downloaded from the same release site
             {
                 webRequestUrl = "https://github.com/Hibbiki/chromium-win64/releases/latest/";
             }
@@ -119,7 +144,7 @@ namespace ChromiumForWindows_Updater
             }
             else if (localVersion != latestVersion)
             {
-                StartAndWaitForUpdate();
+                StartAndWaitForUpdate(); // I know only this method to run it asynchronously so the UI won't freeze
             }
             else
             {

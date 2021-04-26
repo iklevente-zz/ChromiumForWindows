@@ -35,6 +35,7 @@
         <ComboBox x:Name="BuildComboBox"
             materialDesign:HintAssist.Hint="" Margin="225,85,49,0" VerticalAlignment="Top" Height="30" SelectedIndex="0" BorderBrush="#894687F4" Background="#00000000" SelectionChanged="ComboBox_SelectionChanged" >
             <ComboBoxItem>stable (Hibbiki)</ComboBoxItem>
+            <ComboBoxItem>nosync (Hibbiki)</ComboBoxItem>
             <ComboBoxItem>ungoogled (Marmaduke)</ComboBoxItem>
         </ComboBox>
 
@@ -59,10 +60,14 @@
             Style="{StaticResource MaterialDesignTextBlock}" Margin="0,0,10,10" FontSize="12" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="236" Visibility="Hidden"><Hyperlink Click="Hyperlink_Click">There is a new update avalible to download!</Hyperlink></TextBlock>
         <TextBlock x:Name="noResponseText"
             Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="No response from download server. Check your internet connection!" FontSize="12" HorizontalAlignment="Center" Width="368" Visibility="Hidden" FontWeight="Normal" FontStyle="Normal" Margin="0,410,0,0" TextTrimming="None" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+        <TextBlock x:Name="notInstalledText"
+            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Chromium is not installed! Press Apply to try again!" FontSize="12" HorizontalAlignment="Center" Width="278" Visibility="Hidden" FontWeight="Normal" FontStyle="Normal" Margin="0,410,0,0" TextTrimming="None" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+        <TextBlock x:Name="notUninstalledText"
+            Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="You didn't uninstall Chromium! Press Apply to try again!" FontSize="12" HorizontalAlignment="Center" Width="298" Visibility="Hidden" FontWeight="Normal" FontStyle="Normal" Margin="0,410,0,0" TextTrimming="None" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
 
         <Button x:Name="applyButton"
             Style="{StaticResource MaterialDesignRaisedButton}"
-            Content="Apply" Margin="0,362,120,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Width="66" Click="applyButton_Click" />
+            Content="Apply" Margin="0,362,118,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Width="68" Click="applyButton_Click" />
 
         <Button x:Name="startButton"
             Style="{StaticResource MaterialDesignRaisedButton}"

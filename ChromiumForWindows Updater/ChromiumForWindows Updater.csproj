@@ -7,10 +7,30 @@
     <UseWPF>true</UseWPF>
     <Platforms>AnyCPU;x64</Platforms>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Version>2.1</Version>
+    <Authors>iklevente and Contributors</Authors>
+    <Company>iklevente</Company>
+    <Product>Chromium Updater</Product>
+    <Description>Automatically updates your Chromium to the latest version.
+It checks for updates every time you start the computer.</Description>
+    <Copyright>iklevente and Contributors</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/iklevente/ChromiumForWindows</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/iklevente/ChromiumForWindows</RepositoryUrl>
+    <RepositoryType>GitHub repository</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="logo.png" />
+    <None Include="..\Shared Resources\Images\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="C:\Users\klevi\Desktop\Saved\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

@@ -8,10 +8,29 @@
     <RootNamespace>ChromiumForWindows_Settings</RootNamespace>
     <Platforms>AnyCPU;x64</Platforms>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Version>2.1</Version>
+    <Authors>iklevente and Contributors</Authors>
+    <Company>iklevente</Company>
+    <Description>ChromiumForWindows Settings interface.
+Makes it easy to switch between different Chromium builds.</Description>
+    <Copyright>iklevente and Contributors</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/iklevente/ChromiumForWindows</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/iklevente/ChromiumForWindows</RepositoryUrl>
+    <RepositoryType>GitHub repository</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="logo.png" />
+    <None Include="..\Shared Resources\Images\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="C:\Users\klevi\Desktop\Saved\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
