@@ -21,8 +21,7 @@ Check the [Releases](https://github.com/iklevente/ChromiumForWindows/releases/la
 
 
 ## Plans:
-- Keep the project working as expected, if something would go wrong.
-- Material UI Installer
+The current to do list for the project is available at [Trello](https://trello.com/b/oMVvIZFQ/chromiumforwindows)
 
 
 ## Big thanks to:
