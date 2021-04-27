@@ -1,5 +1,5 @@
 # Chromium For Windows
-This project can install the latest Chromium to your PC and it keeps the browser up to date. The build releases are from https://chromium.woolyss.com/
+This project can install the latest Chromium on your PC and it keeps the browser up to date. The build releases are from https://chromium.woolyss.com/
 
 **Important: You will need .NET Core Runtime to run the program. Download it from [here](https://dotnet.microsoft.com/download).**
 
