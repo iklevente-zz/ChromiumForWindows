@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 
@@ -25,6 +27,32 @@ namespace ChromiumForWindows_Updater
 
             string json = sr.ReadToEnd();
             sr.Close();
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(json);
+
+            string installerDownloadLink = result.win64[0].links[0].url;
+            //Console.WriteLine(installerDownloadLink);
         }
+    }
+    public class Rootobject
+    {
+        public win64[] win64 { get; set; }
+    }
+
+    public class win64
+    {
+        public string tag { get; set; }
+        public string editor { get; set; }
+        public string channel { get; set; }
+        public string version { get; set; }
+        public string revision { get; set; }
+        public string timestamp { get; set; }
+        public links[] links { get; set; }
+    }
+
+    public class links
+    {
+        public string label { get; set; }
+        public string url { get; set; }
+        public string repository { get; set; }
     }
 }
