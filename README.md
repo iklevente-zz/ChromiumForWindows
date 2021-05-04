@@ -22,6 +22,7 @@ The current to do list for the project is available at [Trello](https://trello.c
 
 ## Big thanks to:
 - woolyss https://chromium.woolyss.com/ +rep 🍺
+- Kapasi Fülöp https://github.com/kapasifulop +rep 🍺
 - Hibbiki https://github.com/Hibbiki/chromium-win64 +rep 🍺
 - Marmaduke https://github.com/macchrome/winchrome/ +rep 🍺
 - stevennyman https://github.com/stevennyman +rep 🍺
