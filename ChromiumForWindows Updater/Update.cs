@@ -9,6 +9,7 @@ namespace ChromiumForWindows_Updater
 {
     class Update
     {
+        public static int link;
         public static void StartUpdate()
         {
             // Closes all Chromium tasks to be able to update:
@@ -35,10 +36,12 @@ namespace ChromiumForWindows_Updater
             if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki\""))
             {
                 filename = "download/mini_installer.sync.exe";
+                link = 0;
             }
             else if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki nosync\""))
             {
                 filename = "download/mini_installer.nosync.exe";
+                link = 1;
             }
             else if (AppConfig.content.Contains("\"chromiumBuild\": \"Marmaduke\""))
             {
@@ -49,6 +52,7 @@ namespace ChromiumForWindows_Updater
             using (WebClient webClient = new WebClient())
             {
                 webClient.DownloadFile(MainWindow.webRequestUrl + filename, MainWindow.chromiumPath + "\\chromium_installer.exe");
+                //webClient.DownloadFile(ApiRequest.GetApiData.result)
             }
 
             // Installing
