@@ -32,9 +32,4 @@ The current to do list for the project is available at [Trello](https://trello.c
 ## Buy me a coffee ☕:
 **Ko-fi:** https://ko-fi.com/iklevente
 
-**BTC:** 3BLDTSX8eiM7QmxQZ3fZhdtkJFxjK5tThs
-
-**XMR:** 897oVNnAbFuGmDBEDRkfY762CzMXk6gGxPaQXQaJj6WW5pw6p78w3Zk9LKEqLoy4FyjoNzPZ4xPD2UvgBVt9Nva9LjStfNM
-
-
 *This project is licensed under the Apache License 2.0. Made by Ilyó Kovács Levente and the contributors.*
