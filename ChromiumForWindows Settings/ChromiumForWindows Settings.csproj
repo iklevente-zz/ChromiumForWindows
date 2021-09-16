@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.20348.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>ChromiumForWindows Settings</AssemblyName>
     <RootNamespace>ChromiumForWindows_Settings</RootNamespace>
@@ -19,6 +19,7 @@ Makes it easy to switch between different Chromium builds.</Description>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/iklevente/ChromiumForWindows</RepositoryUrl>
     <RepositoryType>GitHub repository</RepositoryType>
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,7 +35,7 @@ Makes it easy to switch between different Chromium builds.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaterialDesignThemes" Version="4.0.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 

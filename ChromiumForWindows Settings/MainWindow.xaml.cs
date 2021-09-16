@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Diagnostics;
 using ChromiumForWindows_Settings.Properties;
 using System.Net;
+using System.Net.Http;
 
 namespace ChromiumForWindows_Settings
 {
@@ -147,6 +148,7 @@ namespace ChromiumForWindows_Settings
         {
             // Checks the version from the website. It will use the choosen link above, which will redirect to the latest version. string latestVersion will be equal to the redirected URL.
             WebRequest request = WebRequest.Create(webRequestUrl);
+            
             request.Method = "HEAD"; // Use a HEAD request because we don't need to download the response body
             try
             {
@@ -303,10 +305,8 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "This Chromium build is up-to-date. It means Chromium browser and Google Chrome are based on the same latest stable version and security updates of the Chromium source code.";
             descriptionText.Visibility = Visibility.Visible;
         }
-        private void uptodateChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            descriptionText.Visibility = Visibility.Hidden;
-        }
+        // itt basztam el
+        
 
         private void stableChip_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
