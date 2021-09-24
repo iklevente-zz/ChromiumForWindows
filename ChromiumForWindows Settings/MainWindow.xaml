@@ -36,6 +36,8 @@
             materialDesign:HintAssist.Hint="" Margin="225,85,49,0" VerticalAlignment="Top" Height="30" SelectedIndex="0" BorderBrush="#894687F4" Background="#00000000" SelectionChanged="ComboBox_SelectionChanged" >
             <ComboBoxItem>stable (Hibbiki)</ComboBoxItem>
             <ComboBoxItem>ungoogled (Marmaduke)</ComboBoxItem>
+            <ComboBoxItem>modded (RobRich)</ComboBoxItem>
+            <ComboBoxItem>official (dev build)</ComboBoxItem>
         </ComboBox>
 
         <Grid Margin="41,130,0,0" HorizontalAlignment="Left" Width="409" Height="118" VerticalAlignment="Top">

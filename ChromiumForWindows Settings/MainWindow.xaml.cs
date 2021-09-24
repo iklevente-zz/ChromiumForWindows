@@ -6,7 +6,6 @@ using System.Windows.Media;
 using System.Diagnostics;
 using ChromiumForWindows_Settings.Properties;
 using System.Net;
-using System.Net.Http;
 using System.Linq;
 
 namespace ChromiumForWindows_Settings
@@ -52,7 +51,6 @@ namespace ChromiumForWindows_Settings
             {
                 System.Windows.Application.Current.Shutdown();
             }
-            finally { }
         }
 
         private void CheckBuild()
@@ -80,6 +78,20 @@ namespace ChromiumForWindows_Settings
 
                 // UI Changes for selected build at startup
                 MarmadukeUI();
+            }
+            else if (AppConfig.content.Contains("\"chromiumBuild\": \"RobRich\""))
+            {
+                BuildComboBox.SelectedIndex = 2;
+
+                // UI Changes for selected build at startup
+                RobRichUI();
+            }
+            else if (AppConfig.content.Contains("\"chromiumBuild\": \"official\""))
+            {
+                BuildComboBox.SelectedIndex = 3;
+
+                // UI Changes for selected build at startup
+                officialUI();
             }
             else
             {
@@ -120,6 +132,36 @@ namespace ChromiumForWindows_Settings
 
                     // UI Changes for selected build
                     MarmadukeUI();
+                }
+            }
+            if (BuildComboBox.SelectedIndex == 2)
+            {
+                if (isInitializationCompleted == false)
+                {
+                    // Do nothing because it would crash. This bool is a workaround not to let it happen.
+                }
+                else
+                {
+                    unsavedChromiumBuild = "RobRich";
+                    AppConfig.SaveSettings();
+
+                    // UI Changes for selected build
+                    RobRichUI();
+                }
+            }
+            if (BuildComboBox.SelectedIndex == 3)
+            {
+                if (isInitializationCompleted == false)
+                {
+                    // Do nothing because it would crash. This bool is a workaround not to let it happen.
+                }
+                else
+                {
+                    unsavedChromiumBuild = "official";
+                    AppConfig.SaveSettings();
+
+                    // UI Changes for selected build
+                    officialUI();
                 }
             }
         }
@@ -179,7 +221,6 @@ namespace ChromiumForWindows_Settings
 
 
         // UI event handle
-
         public void HibbikiUI()
         {
             allcodecsChip.Width = 83; // default 83
@@ -193,11 +234,12 @@ namespace ChromiumForWindows_Settings
             syncChip.Background = (Brush)bc.ConvertFrom("#FF76F399"); // green, default #FFE8E8E8 grey
             ungoogledChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
             privacyorientedChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
+            modifiedChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
+            widevineChip.Background = (Brush)bc.ConvertFrom("#FF76F399"); // green, default #FFE8E8E8 (grey)
 
             descriptionText.Visibility = Visibility.Visible;
             descriptionText.Text = "Hibbiki's Chromium builds. Google services are integrated. https://github.com/Hibbiki/chromium-win64";
         }
-
         public void MarmadukeUI()
         {
             allcodecsChip.Width = 90; // default 83
@@ -210,9 +252,48 @@ namespace ChromiumForWindows_Settings
             syncChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // default #FFE8E8E8 grey
             ungoogledChip.Background = (Brush)bc.ConvertFrom("#FF76F399"); // green, default #FFE8E8E8 (grey)
             privacyorientedChip.Background = (Brush)bc.ConvertFrom("#FF76F399"); // green, default #FFE8E8E8 (grey)
+            modifiedChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
+            widevineChip.Background = (Brush)bc.ConvertFrom("#FF76F399"); // green, default #FFE8E8E8 (grey)
 
             descriptionText.Visibility = Visibility.Visible;
             descriptionText.Text = "Marmaduke's Chromium builds. Ungoogled, plus has more codecs than usual. https://github.com/macchrome/winchrome";
+        }
+        public void RobRichUI()
+        {
+            allcodecsChip.Width = 83; // default 83
+            allcodecsChip.Content = "all-codecs";
+
+            avxChip.Width = 50; // default 50
+            avxChip.Content = "AVX2";
+
+            // Change chip colors
+            var bc = new BrushConverter();
+            syncChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 grey
+            ungoogledChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
+            privacyorientedChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
+            modifiedChip.Background = (Brush)bc.ConvertFrom("#FF76F399"); // green, default #FFE8E8E8 (grey)
+            widevineChip.Background = (Brush)bc.ConvertFrom("#FF76F399"); // green, default #FFE8E8E8 (grey)
+
+            descriptionText.Visibility = Visibility.Visible;
+            descriptionText.Text = "RobRich's Chromium builds. Contains AVX2 and FMA processor instruction set. Additional features of the builds include modified compiler and linker optimizations via build configuration modifications. https://github.com/RobRich999/Chromium_Clang";
+        }
+        public void officialUI()
+        {
+            allcodecsChip.Width = 83; // default 83
+            allcodecsChip.Content = "all-codecs";
+
+            avxChip.Width = 50; // default 50
+            avxChip.Content = "AVX";
+
+            var bc = new BrushConverter();
+            syncChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 grey
+            ungoogledChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
+            privacyorientedChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
+            modifiedChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
+            widevineChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
+
+            descriptionText.Visibility = Visibility.Visible;
+            descriptionText.Text = "Official Chromium development build by The Chromium Authors. https://www.chromium.org/getting-involved/download-chromium";
         }
 
         private void applyButton_Click(object sender, RoutedEventArgs e)

@@ -114,9 +114,21 @@ namespace ChromiumForWindows_Updater
                 ApiRequest.GetApiData();
                 latestVersion = ApiRequest.installerDownloadLink;
             }
+            else if (AppConfig.content.Contains("\"chromiumBuild\": \"RobRich\""))
+            {
+                editorIndex = 2;
+                ApiRequest.GetApiData();
+                latestVersion = ApiRequest.installerDownloadLink;
+            }
+            else if (AppConfig.content.Contains("\"chromiumBuild\": \"official\""))
+            {
+                editorIndex = 6;
+                ApiRequest.GetApiData();
+                latestVersion = ApiRequest.installerDownloadLink;
+            }
 
             // Here the program decides, if it needs to be updated
-            if (latestVersion == "No response from download server. Check your internet connection!")
+            if (latestVersion == "No response")
             {
                 CloseUpdater();
                 return;

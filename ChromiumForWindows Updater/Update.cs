@@ -29,7 +29,7 @@ namespace ChromiumForWindows_Updater
             // Downloading
             using (WebClient webClient = new WebClient())
             {
-                webClient.DownloadFile(MainWindow.latestVersion, "chromium_installer.exe");
+                webClient.DownloadFile(MainWindow.latestVersion, MainWindow.chromiumPath + "\\chromium_installer.exe");
             }
 
             // Installing
