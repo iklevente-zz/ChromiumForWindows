@@ -17,17 +17,17 @@ namespace ChromiumForWindows_Updater
 
         public MainWindow()
         {
-            CheckChromiumDir();
-            CheckAutorun();
-            CheckBuild();
-            CheckVersion();
-            InitializeComponent();
-
             // If it's already updating in the background, don't allow running it again.
             if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
+
+            CheckChromiumDir();
+            CheckAutorun();
+            CheckBuild();
+            CheckVersion();
+            InitializeComponent();
         }
 
         private void CheckChromiumDir()
@@ -47,7 +47,6 @@ namespace ChromiumForWindows_Updater
             {
                 System.Windows.Application.Current.Shutdown();
             }
-            finally { }
         }
 
         private void CheckAutorun()
@@ -65,7 +64,7 @@ namespace ChromiumForWindows_Updater
             // The path to the key where Windows looks for startup applications
             RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
-            if (rkApp.GetValue("My app's name") == null)
+            if (rkApp.GetValue("Chromium Updater") == null)
                 // The value doesn't exist, the application is not set to run at startup
                 return false;
             else
@@ -88,7 +87,8 @@ namespace ChromiumForWindows_Updater
         // Checks current version with the newest version: 
         public static string localVersion = null;
         public static string latestVersion = null;
-        public static string webRequestUrl = null;
+        //public static string webRequestUrl = null;
+        public static int editorIndex;
         void CheckVersion()
         {
             if (!System.IO.File.Exists(chromiumPath + "\\versioninfo.txt"))
@@ -100,40 +100,19 @@ namespace ChromiumForWindows_Updater
             // Checks the local version
             localVersion = System.IO.File.ReadAllText(chromiumPath + "\\versioninfo.txt");
 
+            
             // Decides where to create a web request
-            if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki")) // No need to add Hibbiki nosync here since both stable build and Hibbiki nosync build can be downloaded from the same release site
+            if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki"))
             {
-                webRequestUrl = "https://github.com/Hibbiki/chromium-win64/releases/latest/";
+                editorIndex = 0;
+                ApiRequest.GetApiData();
+                latestVersion = ApiRequest.installerDownloadLink;
             }
             else if (AppConfig.content.Contains("\"chromiumBuild\": \"Marmaduke\""))
             {
-                webRequestUrl = "https://github.com/macchrome/winchrome/releases/latest/";
-                // Marmaduke's release file names are always changing so we need to regex it and put it in a string --> GetFileVersion.GetVersionInfo(); but only after latestVersion is requested below
-            }
-
-            // Checks the version from the website. It will use the choosen link above, which will redirect to the latest version. string latestVersion will be equal to the redirected URL.
-            WebRequest request = WebRequest.Create(webRequestUrl);
-            request.Method = "HEAD"; // Use a HEAD request because we don't need to download the response body
-            try
-            {
-                // Asking for latestVersion
-                using (WebResponse response = request.GetResponse())
-                {
-                    latestVersion = response.ResponseUri.ToString();
-                }
-
-                // If Marmaduke build, get letestVersion from the always changing filename
-                if (AppConfig.content.Contains("\"chromiumBuild\": \"Marmaduke\""))
-                {
-                    GetFileVersion.GetVersionInfo();
-                }
-            }
-            catch (WebException e)
-            {
-                using (WebResponse response = e.Response)
-                {
-                    latestVersion = "No response from download server. Check your internet connection!";
-                }
+                editorIndex = 1;
+                ApiRequest.GetApiData();
+                latestVersion = ApiRequest.installerDownloadLink;
             }
 
             // Here the program decides, if it needs to be updated

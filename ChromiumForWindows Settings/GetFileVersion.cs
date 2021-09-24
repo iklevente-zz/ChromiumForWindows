@@ -10,7 +10,7 @@ namespace ChromiumForWindows_Settings
 
         public static void GetOldVersionInfo()
         {
-            buildLocalVersion =  System.IO.File.ReadAllText(MainWindow.chromiumPath + "\\versioninfo.txt"); // Checks the local version
+            buildLocalVersion = System.IO.File.ReadAllText(MainWindow.chromiumPath + "\\versioninfo.txt"); // Checks the local version
 
             //Get the unique GitHub release filename
             string regexpattern = @"v(.*?)-";

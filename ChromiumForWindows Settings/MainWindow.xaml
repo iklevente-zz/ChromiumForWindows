@@ -35,12 +35,11 @@
         <ComboBox x:Name="BuildComboBox"
             materialDesign:HintAssist.Hint="" Margin="225,85,49,0" VerticalAlignment="Top" Height="30" SelectedIndex="0" BorderBrush="#894687F4" Background="#00000000" SelectionChanged="ComboBox_SelectionChanged" >
             <ComboBoxItem>stable (Hibbiki)</ComboBoxItem>
-            <ComboBoxItem>nosync (Hibbiki)</ComboBoxItem>
             <ComboBoxItem>ungoogled (Marmaduke)</ComboBoxItem>
         </ComboBox>
 
         <Grid Margin="41,130,0,0" HorizontalAlignment="Left" Width="409" Height="118" VerticalAlignment="Top">
-            <materialDesign:Chip x:Name="uptodateChip" Margin="9,0,317,80" Content="up-to-date" HorizontalAlignment="Stretch" Height="32" VerticalAlignment="Bottom" Background="#FF76F399" MouseEnter="uptodateChip_MouseEnter" />
+            <materialDesign:Chip x:Name="uptodateChip" Margin="9,0,317,80" Content="up-to-date" HorizontalAlignment="Stretch" Height="32" VerticalAlignment="Bottom" Background="#FF76F399" MouseEnter="uptodateChip_MouseEnter" MouseLeave="uptodateChip_MouseLeave" />
             <materialDesign:Chip x:Name="allcodecsChip" Margin="243,0,76,80" Content="all-codecs" Height="32" VerticalAlignment="Bottom" MouseEnter="allcodecsChip_MouseEnter" MouseLeave="allcodecsChip_MouseLeave" HorizontalAlignment="Stretch" Background="#FF76F399"/>
             <materialDesign:Chip x:Name="widevineChip" Margin="163,0,171,80" Content="widevine" HorizontalAlignment="Stretch" Height="32" VerticalAlignment="Bottom" MouseEnter="widevineChip_MouseEnter" MouseLeave="widevineChip_MouseLeave" Background="#FF76F399"/>
             <materialDesign:Chip x:Name="syncChip" Margin="9,0,349,43" Content="sync" HorizontalAlignment="Stretch" Height="32" VerticalAlignment="Bottom" MouseEnter="syncChip_MouseEnter" MouseLeave="syncChip_MouseLeave" Background="#FFE8E8E8"/>

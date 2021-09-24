@@ -8,7 +8,8 @@ namespace ChromiumForWindows_Updater
 {
     public class ApiRequest
     {
-        public void GetApiData()
+        public static string installerDownloadLink = null;
+        public static void GetApiData()
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://chromium.woolyss.com/api/v4/");
             request.Method = "POST";
@@ -29,8 +30,7 @@ namespace ChromiumForWindows_Updater
             sr.Close();
             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(json);
 
-            string installerDownloadLink = result.win64[0].links[0].url;
-            //Console.WriteLine(installerDownloadLink);
+            installerDownloadLink = result.win64[MainWindow.editorIndex].links[0].url;
         }
     }
     public class Rootobject

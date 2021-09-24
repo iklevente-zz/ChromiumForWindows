@@ -7,6 +7,7 @@ using System.Diagnostics;
 using ChromiumForWindows_Settings.Properties;
 using System.Net;
 using System.Net.Http;
+using System.Linq;
 
 namespace ChromiumForWindows_Settings
 {
@@ -20,6 +21,12 @@ namespace ChromiumForWindows_Settings
 
         public MainWindow()
         {
+            // If it's already running, don't allow running it again.
+            if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
             CheckChromiumDir();
             InitializeComponent();
             CheckBuild();
@@ -67,16 +74,9 @@ namespace ChromiumForWindows_Settings
                 // UI Changes for selected build at startup
                 HibbikiUI();
             }
-            else if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki nosync\""))
-            {
-                BuildComboBox.SelectedIndex = 1;
-
-                // UI Changes for selected build at startup
-                HibbikiNosyncUI();
-            }
             else if (AppConfig.content.Contains("\"chromiumBuild\": \"Marmaduke\""))
             {
-                BuildComboBox.SelectedIndex = 2;
+                BuildComboBox.SelectedIndex = 1;
 
                 // UI Changes for selected build at startup
                 MarmadukeUI();
@@ -84,7 +84,7 @@ namespace ChromiumForWindows_Settings
             else
             {
                 // This happends at the default Comobox Setting (first time initilaization) or if somehow you mess up the settings.json file
-                // This will install the default Chromium build which is iklevente's build.
+                // This will install the default Chromium build which is Hibbiki's build.
                 BuildComboBox.SelectedIndex = 0;
             }
         }
@@ -108,21 +108,6 @@ namespace ChromiumForWindows_Settings
                 }
             }
             if (BuildComboBox.SelectedIndex == 1)
-            {
-                if (isInitializationCompleted == false)
-                {
-                    // Do nothing because it would crash. This bool is a workaround not to let it happen.
-                }
-                else
-                {
-                    unsavedChromiumBuild = "Hibbiki nosync";
-                    AppConfig.SaveSettings();
-
-                    // UI Changes for selected build
-                    HibbikiNosyncUI();
-                }
-            }
-            if (BuildComboBox.SelectedIndex == 2)
             {
                 if (isInitializationCompleted == false)
                 {
@@ -162,12 +147,12 @@ namespace ChromiumForWindows_Settings
             {
                 using (WebResponse response = e.Response)
                 {
-                    latestVersion = "No response from download server. Check your internet connection!";
+                    latestVersion = "No response";
                 }
             }
 
             // If there is no internet connection
-            if (latestVersion == "No response from download server. Check your internet connection!")
+            if (latestVersion == "No response")
             {
                 noResponseText.Visibility = Visibility.Visible;
                 // Don't allow to switch versions because it could not download
@@ -213,24 +198,6 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "Hibbiki's Chromium builds. Google services are integrated. https://github.com/Hibbiki/chromium-win64";
         }
 
-        public void HibbikiNosyncUI()
-        {
-            allcodecsChip.Width = 83; // default 83
-            allcodecsChip.Content = "all-codecs";
-
-            avxChip.Width = 50; // default 50
-            avxChip.Content = "AVX";
-
-            // Change chip colors
-            var bc = new BrushConverter();
-            syncChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 grey
-            ungoogledChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
-            privacyorientedChip.Background = (Brush)bc.ConvertFrom("#FFE8E8E8"); // grey, default #FFE8E8E8 (grey)
-
-            descriptionText.Visibility = Visibility.Visible;
-            descriptionText.Text = "Hibbiki's Chromium builds. Some Google services are not integrated. (eg.: Chrome Sync...) https://github.com/Hibbiki/chromium-win64";
-        }
-
         public void MarmadukeUI()
         {
             allcodecsChip.Width = 90; // default 83
@@ -259,25 +226,22 @@ namespace ChromiumForWindows_Settings
                 GetFileVersion.GetOldVersionInfo();
                 var uninstaller = System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\" + GetFileVersion.finalregexresult + "\\Installer\\setup.exe"), "-uninstall");
                 uninstaller.WaitForExit(); // Wait till the old version is uninstalled, after that check if user didn't click cancel, only then apply the new build
-                System.IO.File.Delete(chromiumPath + "\\versioninfo.txt");
+                
+                if (File.Exists(System.IO.Path.Combine(chromiumPath + "\\Application\\" + GetFileVersion.finalregexresult + "\\Installer\\setup.exe")))
+                {
+                    notUninstalledText.Visibility = Visibility.Visible;
+                    return;
+                }
+                else
+                {
+                    notUninstalledText.Visibility = Visibility.Hidden;
+                    System.IO.File.Delete(chromiumPath + "\\versioninfo.txt");
+                }
             }
             catch (Exception)
             {
-                // Exception happens when the chromium uninstaller cannot be found. This exception should only happen if Chrome & CFW is installed the very first time. No worries, just go on without crashing
+                // Exception happens when the Chromium cannot be found. This exception should only happen if Chrome & CFW is installed the very first time. No worries, just go on without crashing
             }
-
-            // Determine if the user actually clicked on "Uninstall" in Chromium uninstaller (assuming the exception does not happened above)
-            // Determine whether the Application directory exists.
-            if (Directory.Exists(chromiumPath + "\\Application"))
-            {
-                notUninstalledText.Visibility = Visibility.Visible;
-                return;
-            }
-            else
-            {
-                notUninstalledText.Visibility = Visibility.Hidden;
-            }
-
 
             // Apply new build
             var updater = System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\ChromiumForWindows Updater.exe"));
@@ -305,8 +269,10 @@ namespace ChromiumForWindows_Settings
             descriptionText.Text = "This Chromium build is up-to-date. It means Chromium browser and Google Chrome are based on the same latest stable version and security updates of the Chromium source code.";
             descriptionText.Visibility = Visibility.Visible;
         }
-        // itt basztam el
-        
+        private void uptodateChip_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            descriptionText.Visibility = Visibility.Hidden;
+        }
 
         private void stableChip_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
