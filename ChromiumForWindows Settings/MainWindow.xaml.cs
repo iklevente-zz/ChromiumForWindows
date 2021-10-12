@@ -27,6 +27,7 @@ namespace ChromiumForWindows_Settings
             }
 
             CheckChromiumDir();
+            CheckSettingsJson();
             InitializeComponent();
             CheckBuild();
             CheckSelfUpdate();
@@ -49,44 +50,49 @@ namespace ChromiumForWindows_Settings
             }
             catch (Exception)
             {
+                MessageBox.Show("Couldn't create Chromium Directory! Maybe try running the software as administrato.");
                 System.Windows.Application.Current.Shutdown();
             }
         }
 
-        private void CheckBuild()
+        private void CheckSettingsJson()
         {
             if (!System.IO.File.Exists(chromiumPath + "\\settings.json"))
             {
-                // If there is no versioninfo.txt file, create one:
+                // If there is no settings.json file, create one:
                 AppConfig.SaveDefaultSettings();
             }
 
-            // Reads in everythong from settings.json (Now the local build is needed)
+            // Reads in the local build
             AppConfig.LoadSettings();
 
+        }
+
+        private void CheckBuild()
+        {
             // Sets the ComboBox to the inspected/checked Chromium build
-            if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki\""))
+            if (AppConfig.chromiumBuildJson == "Hibbiki")
             {
                 BuildComboBox.SelectedIndex = 0;
 
                 // UI Changes for selected build at startup
                 HibbikiUI();
             }
-            else if (AppConfig.content.Contains("\"chromiumBuild\": \"Marmaduke\""))
+            else if (AppConfig.chromiumBuildJson == "Marmaduke")
             {
                 BuildComboBox.SelectedIndex = 1;
 
                 // UI Changes for selected build at startup
                 MarmadukeUI();
             }
-            else if (AppConfig.content.Contains("\"chromiumBuild\": \"RobRich\""))
+            else if (AppConfig.chromiumBuildJson == "RobRich")
             {
                 BuildComboBox.SelectedIndex = 2;
 
                 // UI Changes for selected build at startup
                 RobRichUI();
             }
-            else if (AppConfig.content.Contains("\"chromiumBuild\": \"official\""))
+            else if (AppConfig.chromiumBuildJson == "official")
             {
                 BuildComboBox.SelectedIndex = 3;
 
@@ -219,6 +225,52 @@ namespace ChromiumForWindows_Settings
             Settings.Default.Save();
         }
 
+        private void applyButton_Click(object sender, RoutedEventArgs e)
+        {
+            startButton.IsEnabled = false;
+            notInstalledText.Visibility = Visibility.Hidden;
+
+            // Need to uninstall old build so the new can apply (doing this by starting chrome with the uninstall argument)
+            try
+            {
+                var uninstaller = System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\" + AppConfig.localVerJson + "\\Installer\\setup.exe"), "-uninstall"); // No need for AppConfig.LoadSettings(); because it had been done at initalization
+                uninstaller.WaitForExit(); // Wait till the old version is uninstalled, after that check if user didn't click cancel, only then apply the new build
+
+                if (Directory.Exists(System.IO.Path.Combine(chromiumPath + "\\Application")))
+                {
+                    notUninstalledText.Visibility = Visibility.Visible;
+                    return;
+                }
+                else
+                {
+                    notUninstalledText.Visibility = Visibility.Hidden;
+                    System.IO.File.Delete(chromiumPath + "\\versioninfo.txt");
+                }
+            }
+            catch (Exception)
+            {
+                // Exception happens when the Chromium cannot be found. This exception should only happen if Chrome & CFW is installed the very first time. No worries, just go on without crashing
+            }
+
+            // Apply new build
+            var updater = System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\CFW Updater\\ChromiumForWindows Updater.exe"));
+            updater.WaitForExit();
+
+            startButton.IsEnabled = true;
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
+            }
+            catch (Exception)
+            {
+                notInstalledText.Visibility = Visibility.Visible;
+            }
+        }
+
 
         // UI event handle
         public void HibbikiUI()
@@ -294,53 +346,6 @@ namespace ChromiumForWindows_Settings
 
             descriptionText.Visibility = Visibility.Visible;
             descriptionText.Text = "Official Chromium development build by The Chromium Authors. https://www.chromium.org/getting-involved/download-chromium";
-        }
-
-        private void applyButton_Click(object sender, RoutedEventArgs e)
-        {
-            startButton.IsEnabled = false;
-            notInstalledText.Visibility = Visibility.Hidden;
-
-            // Need to uninstall old build so the new can apply (doing this by starting chrome with the uninstall argument)
-            try
-            {
-                GetFileVersion.GetOldVersionInfo();
-                var uninstaller = System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\" + GetFileVersion.finalregexresult + "\\Installer\\setup.exe"), "-uninstall");
-                uninstaller.WaitForExit(); // Wait till the old version is uninstalled, after that check if user didn't click cancel, only then apply the new build
-                
-                if (File.Exists(System.IO.Path.Combine(chromiumPath + "\\Application\\" + GetFileVersion.finalregexresult + "\\Installer\\setup.exe")))
-                {
-                    notUninstalledText.Visibility = Visibility.Visible;
-                    return;
-                }
-                else
-                {
-                    notUninstalledText.Visibility = Visibility.Hidden;
-                    System.IO.File.Delete(chromiumPath + "\\versioninfo.txt");
-                }
-            }
-            catch (Exception)
-            {
-                // Exception happens when the Chromium cannot be found. This exception should only happen if Chrome & CFW is installed the very first time. No worries, just go on without crashing
-            }
-
-            // Apply new build
-            var updater = System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\ChromiumForWindows Updater.exe"));
-            updater.WaitForExit();
-
-            startButton.IsEnabled = true;
-        }
-
-        private void startButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start(System.IO.Path.Combine(chromiumPath + "\\Application\\chrome.exe"));
-            }
-            catch (Exception)
-            {
-                notInstalledText.Visibility = Visibility.Visible;
-            }
         }
 
 

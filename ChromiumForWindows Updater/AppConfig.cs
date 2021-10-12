@@ -4,14 +4,13 @@ namespace ChromiumForWindows_Updater
 {
     public class AppConfig
     {
-        // This needs to be the same as CFW Settings AppConfig.cs, except we will not write in the .json file (only if it's missing --> create it: SaveDefaultSettings(); in MainWindow.xaml.cs)
-        // If it's not missing it only needs to read the choosen chromiumBuild from the CFW Settings interface
-
         // The path where to save the settings.json file
         public static string filePath = Path.Combine(MainWindow.chromiumPath, "settings.json");
 
         // Describe all datas that we need to store
+        // This needs to be the same as CFW Settings AppConfig.cs
         public string chromiumBuild { get; set; }
+        public string localVersion { get; set; }
 
         // Write default settings
         // This only happens if the settings.json file is missing
@@ -19,6 +18,26 @@ namespace ChromiumForWindows_Updater
         {
             var defaultSettings = new AppConfig();
             defaultSettings.chromiumBuild = "Hibbiki";
+            defaultSettings.localVersion = ApiRequest.latestApiVersion;
+
+            // Serialize it
+            var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(defaultSettings, Newtonsoft.Json.Formatting.Indented);
+
+            // Save to file
+            string filePath = Path.Combine(MainWindow.chromiumPath, "settings.json");
+
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                sw.Write(serializedObject);
+                sw.Close();
+            }
+        }
+
+        public static void SaveSettings()
+        {
+            var defaultSettings = new AppConfig();
+            defaultSettings.chromiumBuild = chromiumBuildJson;
+            defaultSettings.localVersion = ApiRequest.latestApiVersion;
 
             // Serialize it
             var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(defaultSettings, Newtonsoft.Json.Formatting.Indented);
@@ -34,13 +53,22 @@ namespace ChromiumForWindows_Updater
         }
 
         // Read settings from json file
-        public static string content = null;
+        public static string chromiumBuildJson = null;
+        public static string localVerJson = null;
         public static void LoadSettings()
         {
-            using (StreamReader sr = new StreamReader(filePath))
-            {
-                content = sr.ReadToEnd();
-            }
+            StreamReader sr = new StreamReader(filePath);
+            string json = sr.ReadToEnd();
+            sr.Close();
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(json);
+            chromiumBuildJson = result.chromiumBuild;
+            localVerJson = result.localVersion;
+        }
+
+        public class Rootobject
+        {
+            public string chromiumBuild { get; set; }
+            public string localVersion { get; set; }
         }
     }
 }

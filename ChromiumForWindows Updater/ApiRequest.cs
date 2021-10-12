@@ -9,6 +9,7 @@ namespace ChromiumForWindows_Updater
     public class ApiRequest
     {
         public static string installerDownloadLink = null;
+        public static string latestApiVersion = null;
         public static void GetApiData()
         {
             try
@@ -33,10 +34,11 @@ namespace ChromiumForWindows_Updater
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(json);
 
                 installerDownloadLink = result.win64[MainWindow.editorIndex].links[0].url;
+                latestApiVersion = result.win64[MainWindow.editorIndex].version;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MainWindow.latestVersion = "No response";
+                latestApiVersion = "No response"; // No internet connection or no API response
             }
         }
     }

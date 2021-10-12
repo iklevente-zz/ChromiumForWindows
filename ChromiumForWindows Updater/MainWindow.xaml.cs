@@ -25,7 +25,7 @@ namespace ChromiumForWindows_Updater
 
             CheckChromiumDir();
             CheckAutorun();
-            CheckBuild();
+            CheckSettingsJson();
             CheckVersion();
             InitializeComponent();
         }
@@ -55,8 +55,10 @@ namespace ChromiumForWindows_Updater
             RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
             if (!IsStartupItem())
+            {
                 // Add the value in the registry so that the application runs at startup
-                rkApp.SetValue("Chromium Updater", chromiumPath + "\\ChromiumForWindows Updater.exe");
+                rkApp.SetValue("Chromium Updater", chromiumPath + "\\CFW Updater\\ChromiumForWindows Updater.exe");
+            }
         }
         public static bool IsStartupItem()
         {
@@ -65,75 +67,67 @@ namespace ChromiumForWindows_Updater
             RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
             if (rkApp.GetValue("Chromium Updater") == null)
+            {
                 // The value doesn't exist, the application is not set to run at startup
                 return false;
+            }
             else
+            {
                 // The value exists, the application is set to run at startup
                 return true;
+            }
         }
 
-        private void CheckBuild()
+        private void CheckSettingsJson()
         {
             if (!System.IO.File.Exists(chromiumPath + "\\settings.json"))
             {
-                // If there is no versioninfo.txt file, create one:
+                // If there is no settings.json file, create one:
                 AppConfig.SaveDefaultSettings();
             }
 
             // Reads in the local build
             AppConfig.LoadSettings();
+
         }
 
         // Checks current version with the newest version: 
-        public static string localVersion = null;
-        public static string latestVersion = null;
-        //public static string webRequestUrl = null;
+        //public static string localVersion = null;
+        //public static string latestVersion = null;
+        
         public static int editorIndex;
         void CheckVersion()
         {
-            if (!System.IO.File.Exists(chromiumPath + "\\versioninfo.txt"))
-            {
-                // If there is no versioninfo.txt file, create one:
-                System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Chromium\\versioninfo.txt", "NULL");
-            }
-
-            // Checks the local version
-            localVersion = System.IO.File.ReadAllText(chromiumPath + "\\versioninfo.txt");
-
-            
             // Decides where to create a web request
-            if (AppConfig.content.Contains("\"chromiumBuild\": \"Hibbiki"))
+            if (AppConfig.chromiumBuildJson == "Hibbiki")
             {
                 editorIndex = 0;
                 ApiRequest.GetApiData();
-                latestVersion = ApiRequest.installerDownloadLink;
             }
-            else if (AppConfig.content.Contains("\"chromiumBuild\": \"Marmaduke\""))
+            else if (AppConfig.chromiumBuildJson == "Marmaduke")
             {
                 editorIndex = 1;
                 ApiRequest.GetApiData();
-                latestVersion = ApiRequest.installerDownloadLink;
             }
-            else if (AppConfig.content.Contains("\"chromiumBuild\": \"RobRich\""))
+            else if (AppConfig.chromiumBuildJson == "RobRich")
             {
                 editorIndex = 2;
                 ApiRequest.GetApiData();
-                latestVersion = ApiRequest.installerDownloadLink;
             }
-            else if (AppConfig.content.Contains("\"chromiumBuild\": \"official\""))
+            else if (AppConfig.chromiumBuildJson == "official")
             {
                 editorIndex = 6;
                 ApiRequest.GetApiData();
-                latestVersion = ApiRequest.installerDownloadLink;
             }
 
             // Here the program decides, if it needs to be updated
-            if (latestVersion == "No response")
+            if (ApiRequest.latestApiVersion == "No response") // No internet connection or no API response
             {
                 CloseUpdater();
+                MessageBox.Show("No response from download server.");
                 return;
             }
-            else if (localVersion != latestVersion)
+            else if (AppConfig.localVerJson != ApiRequest.latestApiVersion)
             {
                 StartAndWaitForUpdate(); // I know only this method to run it asynchronously so the UI won't freeze
             }
@@ -146,6 +140,7 @@ namespace ChromiumForWindows_Updater
         private async void StartAndWaitForUpdate()
         {
             await Task.Run(() => Update.StartUpdate());
+
             CloseUpdater();
         }
 

@@ -9,6 +9,7 @@ namespace ChromiumForWindows_Settings
 
         // Describe all datas that we need to store
         public string chromiumBuild { get; set; }
+        public string localVersion {  get; set; }
 
         // Write default settings
         // This only happens if the settings.json file is missing
@@ -16,6 +17,7 @@ namespace ChromiumForWindows_Settings
         {
             var defaultSettings = new AppConfig();
             defaultSettings.chromiumBuild = "Hibbiki";
+            defaultSettings.localVersion = localVerJson;
 
             // Serialize it
             var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(defaultSettings, Newtonsoft.Json.Formatting.Indented);
@@ -34,6 +36,7 @@ namespace ChromiumForWindows_Settings
         {
             var settings = new AppConfig();
             settings.chromiumBuild = MainWindow.unsavedChromiumBuild;
+            settings.localVersion = localVerJson;
 
             // Serialize it
             var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(settings, Newtonsoft.Json.Formatting.Indented);
@@ -49,14 +52,22 @@ namespace ChromiumForWindows_Settings
         }
 
         // Read settings from json file
-        public static string content = null;
+        public static string chromiumBuildJson = null;
+        public static string localVerJson = null;
         public static void LoadSettings()
         {
-            using (StreamReader sr = new StreamReader(filePath))
-            {
-                content = sr.ReadToEnd();
-                sr.Close();
-            }
+            StreamReader sr = new StreamReader(filePath);
+            string json = sr.ReadToEnd();
+            sr.Close();
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(json);
+            chromiumBuildJson = result.chromiumBuild;
+            localVerJson = result.localVersion;
+        }
+
+        public class Rootobject
+        {
+            public string chromiumBuild { get; set; }
+            public string localVersion { get; set; }
         }
     }
 }
