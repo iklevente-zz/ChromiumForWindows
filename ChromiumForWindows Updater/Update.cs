@@ -9,13 +9,17 @@ namespace ChromiumForWindows_Updater
         {
             // Closes all Chromium tasks to be able to update:
             Process[] processes = Process.GetProcessesByName("Chrome");
-            foreach (var process in processes)
+            try
             {
-                if (process.MainModule.FileName.StartsWith(MainWindow.chromiumPath))
+                foreach (var process in processes)
                 {
-                    process.Kill();
+                    if (process.MainModule.FileName.StartsWith(MainWindow.chromiumPath))
+                    {
+                        process.Kill();
+                    }
                 }
             }
+            catch { }
 
             // No need to delete old installer if exists because webClient.DownloadFile overwrites it
             // Downloading and updating Chromium to the latest version:
