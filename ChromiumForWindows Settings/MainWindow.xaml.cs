@@ -112,11 +112,7 @@ namespace ChromiumForWindows_Settings
         {
             if (BuildComboBox.SelectedIndex == 0)
             {
-                if (isInitializationCompleted == false)
-                {
-                    // Do nothing because it would crash. This bool is a workaround not to let it happen.
-                }
-                else
+                if (isInitializationCompleted == true)
                 {
                     unsavedChromiumBuild = "Hibbiki";
                     AppConfig.SaveSettings();
@@ -127,11 +123,7 @@ namespace ChromiumForWindows_Settings
             }
             if (BuildComboBox.SelectedIndex == 1)
             {
-                if (isInitializationCompleted == false)
-                {
-                    // Do nothing because it would crash. This bool is a workaround not to let it happen.
-                }
-                else
+                if (isInitializationCompleted == true)
                 {
                     unsavedChromiumBuild = "Marmaduke";
                     AppConfig.SaveSettings();
@@ -144,10 +136,6 @@ namespace ChromiumForWindows_Settings
             {
                 if (isInitializationCompleted == false)
                 {
-                    // Do nothing because it would crash. This bool is a workaround not to let it happen.
-                }
-                else
-                {
                     unsavedChromiumBuild = "RobRich";
                     AppConfig.SaveSettings();
 
@@ -158,10 +146,6 @@ namespace ChromiumForWindows_Settings
             if (BuildComboBox.SelectedIndex == 3)
             {
                 if (isInitializationCompleted == false)
-                {
-                    // Do nothing because it would crash. This bool is a workaround not to let it happen.
-                }
-                else
                 {
                     unsavedChromiumBuild = "official";
                     AppConfig.SaveSettings();
@@ -244,7 +228,8 @@ namespace ChromiumForWindows_Settings
                 else
                 {
                     notUninstalledText.Visibility = Visibility.Hidden;
-                    System.IO.File.Delete(chromiumPath + "\\versioninfo.txt");
+                    AppConfig.localVerJson = null;
+                    AppConfig.SaveSettings();
                 }
             }
             catch (Exception)
